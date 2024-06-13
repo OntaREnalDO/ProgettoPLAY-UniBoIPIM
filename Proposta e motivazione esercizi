@@ -1,10 +1,9 @@
 Andrea Franzoni, Alberico Zironi, Fabio Savioli
 
-Proposta esercizi:
+Gruppo desArts 
 
--Titolo esercizio
-  completa la frase
--prompt di confronto con chatGPT
+Alberico Zironi
+Esercizio 1 - Completa la frase
 -motivazione dell'importanza di svolgimento dell'esercizio
   l'esercizio dà un overview del codice, lasciando lo spazio per l'argomento che si sta apprendendo in quel momento
 -abilità esercitata
@@ -17,7 +16,30 @@ Proposta esercizi:
 -cosa distingue i diversi gradi di difficoltà
   la parte mancante del programma tratterà argomenti sempre più complessi e specifici.
 -come si creeranno i diversi esercizi dello stesso tipo di pari grado? almeno 3
-  
+
+
+Andrea Franzoni
+Esercizio 2 - Trova l'errore
+-motivazione dell'importanza di svolgimento dell'esercizio
+imparare a riconoscere errori di sintassi o metodi sbagliati in un codice
+-abilità esercitata
+debugging
+-descrizione delle regole di esecuzione dell'esercizio
+viene presentato un codice scritto con un errore da individuare, l'obbiettivo è selezionare l'unica risposta corretta tra 4 presentate
+sotto all'overview del codice, che permetterà al codice di essere eseguito
+-perchè svolgendo tale esercizio si apprenderà tale abilità
+si tratta di mettere in gioco e allenare la capacità di debugging, ovvero riconoscere l'errore e correggerloper far funzionare il programma
+quindi esercizio pratico sull'abilità da allenare
+-cosa distingue i diversi gradi di difficoltà
+ le scelte presentate per il completamento dell'esercizio saranno sempre piu verosimili all'aumentare della difficoltà
+-come si creeranno i diversi esercizi dello stesso tipo di pari grado? almeno 3
+argomenti trattati ritenuti dello stesso grado di difficoltà
+
+
+
+
+-prompt di confronto con chatGPT
+
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 -Esercizio 1: scegli risposta esatta
@@ -25,12 +47,12 @@ Proposta esercizi:
 avrà 4 selezioni sotto al codice presentato e bisognerà selezionare il tasto con la risposta corretta
 etc etc
 
-
+Fabio Savioli
 Titolo esercizio
 -prompt di confronto con chatGPT
 -motivazione dell'importanza di svolgimento dell'esercizio
 -abilità esercitata
 -descrizione dele regole di esecuzione dell'esercizio
 -perchè svolgendo tale esercizio si apprenderà tale abilità
--cosa dstingue i diversi gradi di difficoltà
+-cosa distingue i diversi gradi di difficoltà
 -come si creeranno i diversi esercizi dello stesso tipo di pari grado? almeno 3

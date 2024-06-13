@@ -42,17 +42,16 @@ argomenti trattati ritenuti dello stesso grado di difficoltà
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------
 
--Esercizio 1: scegli risposta esatta
-
-avrà 4 selezioni sotto al codice presentato e bisognerà selezionare il tasto con la risposta corretta
-etc etc
-
 Fabio Savioli
-Titolo esercizio
+Esercizio 3 - Quiz
 -prompt di confronto con chatGPT
 -motivazione dell'importanza di svolgimento dell'esercizio
+L’esercizio quiz è un metodo classico per testare la propria conoscenza in merito agli argomenti trattati durante il corso, permettendo allo studente di mettersi alla prova per valutare il proprio livello di apprendimento
 -abilità esercitata
+conoscenza della teoria di base, intermedia, avanzata del corso
 -descrizione dele regole di esecuzione dell'esercizio
+Nella schermata verrà proposta una domanda sugli argomenti trattati durante l’anno e 4 opzioni possibili di risposta tra cui l’utente dovrà scegliere quella corretta.
 -perchè svolgendo tale esercizio si apprenderà tale abilità
 -cosa distingue i diversi gradi di difficoltà
 -come si creeranno i diversi esercizi dello stesso tipo di pari grado? almeno 3
+Abbiamo creato 5 domande per ogni grado di difficoltà, le domande sono accomunate dallo stesso grado di complessità degli argomenti trattati, salendo di grado aumenterà anche la difficoltà degli argomenti.

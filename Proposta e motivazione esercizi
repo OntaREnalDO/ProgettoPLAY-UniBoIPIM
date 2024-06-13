@@ -46,12 +46,33 @@ Fabio Savioli
 Esercizio 3 - Quiz
 -prompt di confronto con chatGPT
 -motivazione dell'importanza di svolgimento dell'esercizio
-L’esercizio quiz è un metodo classico per testare la propria conoscenza in merito agli argomenti trattati durante il corso, permettendo allo studente di mettersi alla prova per valutare il proprio livello di apprendimento
+  L’esercizio quiz è un metodo classico per testare la propria conoscenza in merito agli argomenti trattati durante il corso, permettendo allo studente di mettersi alla prova per valutare il proprio livello di apprendimento
 -abilità esercitata
-conoscenza della teoria di base, intermedia, avanzata del corso
+  Conoscenza della teoria di base, intermedia, avanzata del corso
 -descrizione dele regole di esecuzione dell'esercizio
-Nella schermata verrà proposta una domanda sugli argomenti trattati durante l’anno e 4 opzioni possibili di risposta tra cui l’utente dovrà scegliere quella corretta.
+  Nella schermata verrà proposta una domanda sugli argomenti trattati durante l’anno e 4 opzioni possibili di risposta tra cui l’utente dovrà scegliere quella corretta.
 -perchè svolgendo tale esercizio si apprenderà tale abilità
 -cosa distingue i diversi gradi di difficoltà
 -come si creeranno i diversi esercizi dello stesso tipo di pari grado? almeno 3
 Abbiamo creato 5 domande per ogni grado di difficoltà, le domande sono accomunate dallo stesso grado di complessità degli argomenti trattati, salendo di grado aumenterà anche la difficoltà degli argomenti.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Alberico Zironi
+-Titolo esercizio
+  Cosa stampa
+-motivazione dell'importanza di svolgimento dell'esercizio
+  L’esercizio aiuta ad avere un’idea complessiva di un programma, 
+-abilità esercitata
+  Riconoscere le funzionalità dei vari argomenti della programmazione su java, seguendone il flusso di esecuzione all’interno di un programma. Inoltre aumenta la familiarità con le API di java e migliora la lettura critica del codice
+-descrizione delle regole di esecuzione dell'esercizio
+  Verrà presentato un programma di dimensioni limitate, sotto cui bisognerà scrivere l’output esatto che produce.
+-perché svolgendo tale esercizio si apprenderà tale abilità
+  Perché mostra un programma già completo, permettendo a chi è alle prime armi per imparare com’è strutturato un codice senza avere il rischio di bloccarsi su errori di sintassi.
+-cosa distingue i diversi gradi di difficoltà
+  La distinzione tra i vari livelli di difficoltà consiste negli argomenti trattati, che saranno un crescendo per iniziare con le basi e continuare con argomenti più avanzati, e nella complessità del codice, aumentando oltre la difficoltà degli argomenti anche la lunghezza.
+-come si creeranno i diversi esercizi dello stesso tipo di pari grado? almeno 3
+  Gli esercizi sono divisi per argomenti trattati, per raggiungere un livello sempre più avanzato. Perciò per il primo livello (facile) sono stati pensati esercizi che vertono su temi base: quali gli operatori di base, i cicli e l’utilizzo di variabili.
+  Nel livello intermedio, invece, si approfondiscono argomenti come gli array e i metodi, con tutto quello che ne consegue.
+  Infine il livello esperto si concentrerà su esercizi per utenti con un alto livello di conoscenza della programmazione, perciò tratta: ereditarietà, polimorfismo e ArrayList.
+

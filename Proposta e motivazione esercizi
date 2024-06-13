@@ -3,10 +3,11 @@ componenti: Andrea Franzoni, Alberico Zironi, Fabio Savioli
 
 Alberico Zironi
 Esercizio 1 - Completa la frase
+
 -motivazione dell'importanza di svolgimento dell'esercizio
-  l'esercizio dà un overview del codice, lasciando lo spazio per l'argomento che si sta apprendendo in quel momento
+  l'esercizio dà un overview del codice, lasciando lo spazio per l'argomento che si sta apprendendo in quel momento.
 -abilità esercitata
-  apprendimento della sintassi di java 
+  apprendimento della sintassi di java.
 -descrizione delle regole di esecuzione dell'esercizio
   è mostrato un programma compilabile nel quale manca una parte di codice fondamentale propedeutico per l'apprendimento dell'argomento trattato,
   sotto invece vengono mostrate quattro opzioni possibili, di cui solo una giusta, per completarlo.
@@ -20,54 +21,67 @@ Esercizio 1 - Completa la frase
 
 Andrea Franzoni
 Esercizio 2 - Trova l'errore
+
+-pompt chatGPT: https://chatgpt.com/share/7339f616-dbab-4446-a71e-efd3388c95e8
 -motivazione dell'importanza di svolgimento dell'esercizio
-imparare a riconoscere errori di sintassi o metodi sbagliati in un codice
+  imparare a riconoscere errori di sintassi o metodi sbagliati in un codice.
 -abilità esercitata
-debugging
+  debugging
 -descrizione delle regole di esecuzione dell'esercizio
-viene presentato un codice scritto con un errore da individuare, l'obbiettivo è selezionare l'unica risposta corretta tra 4 presentate
-sotto all'overview del codice, che permetterà al codice di essere eseguito
+  viene presentato un codice scritto con un errore da individuare, l'obbiettivo è selezionare l'unica risposta corretta tra 4 presentate,
+  sotto all'overview del codice, che permetterà al codice di essere eseguito.
 -perchè svolgendo tale esercizio si apprenderà tale abilità
-si tratta di mettere in gioco e allenare la capacità di debugging, ovvero riconoscere l'errore e correggerloper far funzionare il programma
-quindi esercizio pratico sull'abilità da allenare
+  si tratta di mettere in gioco e allenare la capacità di debugging, ovvero riconoscere l'errore e correggerlo per far funzionare il programma
+  quindi esercizio pratico sull'abilità da allenare.
 -cosa distingue i diversi gradi di difficoltà
- le scelte presentate per il completamento dell'esercizio saranno sempre piu verosimili all'aumentare della difficoltà
+ le scelte presentate per il completamento dell'esercizio saranno sempre piu verosimili all'aumentare della difficoltà.
 -come si creeranno i diversi esercizi dello stesso tipo di pari grado? almeno 3
-argomenti trattati ritenuti dello stesso grado di difficoltà
+  argomenti trattati ritenuti dello stesso grado di difficoltà.
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Fabio Savioli
 Esercizio 3 - Quiz
--prompt di confronto con chatGPT
+
+-prompt chatGPT: https://chatgpt.com/share/6910c9c5-50d8-432b-880b-56b586d049ca
 -motivazione dell'importanza di svolgimento dell'esercizio
-  L’esercizio quiz è un metodo classico per testare la propria conoscenza in merito agli argomenti trattati durante il corso, permettendo allo studente di mettersi alla prova per valutare il proprio livello di apprendimento
+  L’esercizio quiz è un metodo classico per testare la propria conoscenza in merito agli argomenti trattati durante il corso, 
+  permettendo allo studente di mettersi alla prova per valutare il proprio livello di apprendimento
 -abilità esercitata
   Conoscenza della teoria di base, intermedia, avanzata del corso
 -descrizione dele regole di esecuzione dell'esercizio
-  Nella schermata verrà proposta una domanda sugli argomenti trattati durante l’anno e 4 opzioni possibili di risposta tra cui l’utente dovrà scegliere quella corretta.
+  Nella schermata verrà proposta una domanda sugli argomenti trattati durante l’anno e 4 opzioni possibili di risposta tra cui
+  l’utente dovrà scegliere quella corretta.
 -perchè svolgendo tale esercizio si apprenderà tale abilità
+  Essere messo alla prova con domande di teoria specifiche ti aiuta a ricordare meglio gli argomenti
 -cosa distingue i diversi gradi di difficoltà
 -come si creeranno i diversi esercizi dello stesso tipo di pari grado? almeno 3
-Abbiamo creato 5 domande per ogni grado di difficoltà, le domande sono accomunate dallo stesso grado di complessità degli argomenti trattati, salendo di grado aumenterà anche la difficoltà degli argomenti.
+  Abbiamo creato 5 domande per ogni grado di difficoltà, le domande sono accomunate dallo stesso grado di complessità degli argomenti trattati, 
+  salendo di grado aumenterà anche la difficoltà degli argomenti.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Alberico Zironi
--Titolo esercizio
-  Cosa stampa
+Esercizio 4 - Cosa stampa
+
 -motivazione dell'importanza di svolgimento dell'esercizio
-  L’esercizio aiuta ad avere un’idea complessiva di un programma, 
+  L’esercizio aiuta ad avere un’idea complessiva di un programma comprendendone il funzionamento.
 -abilità esercitata
-  Riconoscere le funzionalità dei vari argomenti della programmazione su java, seguendone il flusso di esecuzione all’interno di un programma. Inoltre aumenta la familiarità con le API di java e migliora la lettura critica del codice
+  Riconoscere le funzionalità dei vari argomenti della programmazione su java, seguendone il flusso di esecuzione all’interno di un programma. 
+  Inoltre aumenta la familiarità con java e migliora la lettura critica del codice
 -descrizione delle regole di esecuzione dell'esercizio
   Verrà presentato un programma di dimensioni limitate, sotto cui bisognerà scrivere l’output esatto che produce.
 -perché svolgendo tale esercizio si apprenderà tale abilità
-  Perché mostra un programma già completo, permettendo a chi è alle prime armi per imparare com’è strutturato un codice senza avere il rischio di bloccarsi su errori di sintassi.
+  Perché mostra un programma già completo, permettendo a chi è alle prime armi di imparare com’è strutturato un codice senza avere il rischio di bloccarsi su errori di sintassi.
 -cosa distingue i diversi gradi di difficoltà
-  La distinzione tra i vari livelli di difficoltà consiste negli argomenti trattati, che saranno un crescendo per iniziare con le basi e continuare con argomenti più avanzati, e nella complessità del codice, aumentando oltre la difficoltà degli argomenti anche la lunghezza.
+  La distinzione tra i vari livelli di difficoltà consiste negli argomenti trattati, che saranno un crescendo per iniziare con le basi
+  e continuare con argomenti più avanzati, e nella complessità del codice, aumentando oltre la difficoltà degli argomenti anche la lunghezza.
 -come si creeranno i diversi esercizi dello stesso tipo di pari grado? almeno 3
-  Gli esercizi sono divisi per argomenti trattati, per raggiungere un livello sempre più avanzato. Perciò per il primo livello (facile) sono stati pensati esercizi che vertono su temi base: quali gli operatori di base, i cicli e l’utilizzo di variabili.
+  Gli esercizi sono divisi per argomenti trattati, per raggiungere un livello sempre più avanzato. Perciò per il primo livello (facile) sono stati pensati esercizi 
+  che vertono su temi base: quali gli operatori, i cicli e l’utilizzo di variabili.
   Nel livello intermedio, invece, si approfondiscono argomenti come gli array e i metodi, con tutto quello che ne consegue.
   Infine il livello esperto si concentrerà su esercizi per utenti con un alto livello di conoscenza della programmazione, perciò tratta: ereditarietà, polimorfismo e ArrayList.
+
+------------------
+Prompt di chatGPT da cui abbiao ideato e strutturato tutti e 4 gli esercizi
 

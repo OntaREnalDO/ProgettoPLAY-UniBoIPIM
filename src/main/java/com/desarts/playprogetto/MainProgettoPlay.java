@@ -10,7 +10,7 @@ public class MainProgettoPlay extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("/yourpackage/main.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/com/desarts/playprogetto/welcome.fxml"));
         primaryStage.setTitle("Educational Game");
         primaryStage.setScene(new Scene(root, 800, 600));
         primaryStage.show();

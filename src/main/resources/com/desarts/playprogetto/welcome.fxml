@@ -6,14 +6,12 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-        
-
-<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.WelcomeController" alignment="CENTER" spacing="20">
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.desarts.playprogetto.Controller" alignment="CENTER" spacing="20">
     <HBox alignment="CENTER" spacing="10">
         <Button fx:id="loginButton" text="Login" onAction="#handleLoginButtonAction"/>
         <Button fx:id="classificaButton" text="Classifica" onAction="#handleClassificaButtonAction"/>
         <Button fx:id="chiudiButton" text="Chiudi Applicazione" onAction="#handleChiudiButtonAction"/>
     </HBox>
-    <Label text="Benvenuto! Esegui il login per iniziare."/>
+    <Label fx:id="statusLabel" text="Benvenuto! Esegui il login per iniziare."/>
     <Button fx:id="iniziaButton" text="Inizia" disable="true" onAction="#handleIniziaButtonAction"/>
 </VBox>

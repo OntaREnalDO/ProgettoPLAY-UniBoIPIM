@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.desarts.playprogetto.ImpostazioniController" alignment="CENTER" spacing="20">
+    <!-- Intestazione -->
+    <HBox alignment="CENTER" spacing="10">
+        <Label fx:id="usernameLabel"/>
+    </HBox>
+
+    <!-- Titolo -->
+    <Label text="Impostazioni" style="-fx-font-size: 24px;"/>
+
+    <!-- Contenuto delle Impostazioni -->
+    <VBox alignment="CENTER" spacing="10">
+        <Button text="Logout" onAction="#handleLogoutAction"/>
+        <Button text="Chiudi Applicazione" onAction="#handleChiudiApplicazioneAction"/>
+    </VBox>
+
+    <!-- Footer -->
+    <HBox alignment="CENTER" spacing="10" padding="10">
+        <Button fx:id="backButton" text="Indietro" onAction="#handleBackButtonAction"/>
+    </HBox>
+</VBox>

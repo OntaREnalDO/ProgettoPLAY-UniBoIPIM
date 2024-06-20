@@ -10,25 +10,15 @@ import java.io.IOException;
 
 public class MainProgettoPlay extends Application {
 
-    private static Stage primaryStage;
-    private static Scene welcomeScene;
+    private static Stage primaryStage;  // Lo stage principale dell'applicazione
+
+
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
-        MainProgettoPlay.primaryStage = primaryStage;
-
-        // Carica la schermata welcome.fxml
-        FXMLLoader welcomeLoader = new FXMLLoader(getClass().getResource("C:/Users/fandr/IdeaProjects/PLAYprogetto/src/main/resources/com/desarts/playprogetto/welcome.fxml"));
-        Parent welcomeRoot = welcomeLoader.load();
-        welcomeScene = new Scene(welcomeRoot);
-
-        // Imposta il titolo della finestra principale
+    public void start(Stage stage) {
+        MainProgettoPlay.primaryStage = stage;
+        showWelcomeScene();  // Mostra la scena di benvenuto all'avvio
         primaryStage.setTitle("Progetto Play by DesArts");
-
-        // Imposta la scena iniziale
-        primaryStage.setScene(welcomeScene);
-
-        // Mostra la finestra principale
         primaryStage.show();
     }
 
@@ -36,30 +26,48 @@ public class MainProgettoPlay extends Application {
         launch(args);
     }
 
-    // Metodo per cambiare la scena alla schermata di login
+    // Metodo per visualizzare la scena di benvenuto
+    public static void showWelcomeScene() {
+        try {
+            Parent root = FXMLLoader.load(MainProgettoPlay.class.getResource("/com/desarts/playprogetto/welcome.fxml"));
+            primaryStage.setScene(new Scene(root));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Metodo per visualizzare la scena di login
     public static void showLoginScene() {
         try {
-            FXMLLoader loader = new FXMLLoader(MainProgettoPlay.class.getResource("\"C:/Users/fandr/IdeaProjects/PLAYprogetto/src/main/resources/com/desarts/playprogetto/login.fxml"));
-            Parent root = loader.load();
+            Parent root = FXMLLoader.load(MainProgettoPlay.class.getResource("/com/desarts/playprogetto/login.fxml"));
             primaryStage.setScene(new Scene(root));
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    // Metodo per cambiare la scena alla schermata delle impostazioni
-    public static void showImpostazioniScene() {
+
+        // Metodo per visualizzare la scena delle impostazioni
+        public static void showImpostazioniScene() {
+            try {
+                Parent root = FXMLLoader.load(MainProgettoPlay.class.getResource("/com/desarts/playprogetto/impostazioni.fxml"));
+                primaryStage.setScene(new Scene(root));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+
+
+
+    // Metodo per visualizzare la scena di registrazione
+    public static void showRegisterScene() {
         try {
-            FXMLLoader loader = new FXMLLoader(MainProgettoPlay.class.getResource("\"C:/Users/fandr/IdeaProjects/PLAYprogetto/src/main/resources/com/desarts/playprogetto/impostazioni.fxml"));
-            Parent root = loader.load();
+            Parent root = FXMLLoader.load(MainProgettoPlay.class.getResource("/com/desarts/playprogetto/register.fxml"));
             primaryStage.setScene(new Scene(root));
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    // Metodo per tornare alla schermata welcome.fxml
-    public static void showWelcomeScene() {
-        primaryStage.setScene(welcomeScene);
     }
 }

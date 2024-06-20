@@ -1,37 +1,64 @@
 package com.desarts.playprogetto;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.stage.Stage;
-
-import java.io.IOException;
+import javafx.scene.control.Label;
 
 public class ImpostazioniController {
 
     @FXML
-    private Button backButton;
-
+    private Label usernameLabel;
     @FXML
-    private void initialize() {
-        // Inizializzazione del controller, se necessario
+    private Button loginButton;
+    @FXML
+    private Button logoutButton;
+
+    // Metodo iniziale per configurare la visibilità dei componenti
+    public void initialize() {
+        updateUIBasedOnAuthStatus();
     }
 
-    @FXML
-    private void handleBackButtonAction(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com.desarts.playprogetto/welcome.fxml"));
-            Parent root = loader.load();
-            Stage stage = (Stage) backButton.getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
+    private void updateUIBasedOnAuthStatus() {
+        boolean isLoggedIn = checkIfUserIsLoggedIn();
+        usernameLabel.setVisible(isLoggedIn);
+        logoutButton.setVisible(isLoggedIn);
+
+        loginButton.setVisible(!isLoggedIn);
+
+        if (isLoggedIn) {
+            // Imposta il testo della label con il nome utente
+            usernameLabel.setText("Benvenuto, " + getLoggedInUsername());
         }
     }
 
-    // Altri metodi per gestire altre azioni della schermata impostazioni.fxml
+    // Simula il controllo dello stato di login
+    private boolean checkIfUserIsLoggedIn() {
+        // Questo dovrebbe essere sostituito con la tua logica di autenticazione
+        return false;
+    }
+
+    // Simula l'ottenimento del nome utente loggato
+    private String getLoggedInUsername() {
+        // Sostituisci con la logica appropriata per ottenere il nome utente
+        return "Utente1";
+    }
+
+    @FXML
+    private void handleLoginAction() {
+        // Logica per gestire il login
+        MainProgettoPlay.showLoginScene();
+    }
+
+    @FXML
+    private void handleLogoutAction() {
+        // Logica per gestire il logout
+        // Dopo il logout, aggiorna l'interfaccia
+        updateUIBasedOnAuthStatus();
+    }
+
+    @FXML
+    private void handleBackAction() {
+        // Torna alla schermata di welcome
+        MainProgettoPlay.showWelcomeScene();
+    }
 }

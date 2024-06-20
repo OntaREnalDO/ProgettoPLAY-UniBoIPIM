@@ -1,29 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
+        <?import javafx.scene.control.Button?>
+        <?import javafx.scene.control.Label?>
+        <?import javafx.scene.layout.VBox?>
+        <?import javafx.geometry.Pos?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.desarts.playprogetto.ImpostazioniController"
+      alignment="CENTER" spacing="10" fx:id="vboxContainer">
+<!-- Elemento condizionale per il nome utente o il pulsante di login -->
+<Label fx:id="usernameLabel" text="Benvenuto, [NomeUtente]" visible="false"/>
+<Button fx:id="loginButton" text="Login" onAction="#handleLoginAction" visible="false"/>
 
-<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.desarts.playprogetto.ImpostazioniController" alignment="CENTER" spacing="20">
-    <!-- Intestazione -->
-    <HBox alignment="CENTER" spacing="10">
-        <Label fx:id="usernameLabel"/>
-    </HBox>
+<!-- Pulsante Logout, visibile solo se l'utente è loggato -->
+<Button fx:id="logoutButton" text="Logout" onAction="#handleLogoutAction" visible="false"/>
 
-    <!-- Titolo -->
-    <Label text="Impostazioni" style="-fx-font-size: 24px;"/>
-
-    <!-- Contenuto delle Impostazioni -->
-    <VBox alignment="CENTER" spacing="10">
-        <Button text="Logout" onAction="#handleLogoutAction"/>
-        <Button text="Chiudi Applicazione" onAction="#handleChiudiApplicazioneAction"/>
-    </VBox>
-
-    <!-- Footer -->
-    <HBox alignment="CENTER" spacing="10" padding="10">
-        <Button fx:id="backButton" text="Indietro" onAction="#handleBackButtonAction"/>
-    </HBox>
+<!-- Pulsante Indietro -->
+<Button text="Indietro" onAction="#handleBackAction"/>
 </VBox>

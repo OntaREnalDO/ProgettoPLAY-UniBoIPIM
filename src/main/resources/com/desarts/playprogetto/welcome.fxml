@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="264.0" prefWidth="301.0" spacing="20" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/22" fx:controller="com.desarts.playprogetto.WelcomeController">
+<VBox alignment="CENTER" prefHeight="400.0" prefWidth="550.0" spacing="20" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/22" fx:controller="com.desarts.playprogetto.WelcomeController">
     <HBox alignment="CENTER" spacing="10">
         <Button fx:id="loginButton" onAction="#handleLoginAction" text="Login" />
         <Button fx:id="impostazioniButton" onAction="#handleImpostazioniAction" text="Impostazioni" />

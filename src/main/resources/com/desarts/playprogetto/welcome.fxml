@@ -12,7 +12,7 @@
         <Button fx:id="impostazioniButton" onAction="#handleImpostazioniAction" text="Impostazioni" />
     </HBox>
     <Label style="-fx-font-size: 24px;" text="Progetto Play by DesArts" />
-     <Button fx:id="iniziaButton" disable="true" prefHeight="86.0" prefWidth="96.0" text="INIZIA">
+     <Button fx:id="iniziaButton" onAction="#handleIniziaAction" prefHeight="86.0" prefWidth="96.0" text="INIZIA">
       <font>
          <Font size="20.0" />
       </font>

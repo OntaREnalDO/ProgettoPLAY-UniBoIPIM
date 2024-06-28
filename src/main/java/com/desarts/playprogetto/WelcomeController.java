@@ -13,6 +13,9 @@ import java.io.IOException;
 public class WelcomeController {
 
     @FXML
+    private void handleIniziaAction(ActionEvent event) {MainProgettoPlay.showHomeScene();}
+
+    @FXML
     private void handleLoginAction(ActionEvent event) {
         MainProgettoPlay.showLoginScene();
     }

@@ -71,4 +71,25 @@ public class MainProgettoPlay extends Application {
             e.printStackTrace();
         }
     }
+
+
+    // Metodo per visualizzare la scena home
+    public static void showHomeScene() {
+        try {
+            Parent root = FXMLLoader.load(MainProgettoPlay.class.getResource("/com/desarts/playprogetto/home.fxml"));
+            primaryStage.setScene(new Scene(root));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Metodo per visualizzare la scena difficolta
+    public static void showDifficultyScene() {
+        try {
+            Parent root = FXMLLoader.load(MainProgettoPlay.class.getResource("/com/desarts/playprogetto/difficolta_cs.fxml"));
+            primaryStage.setScene(new Scene(root));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

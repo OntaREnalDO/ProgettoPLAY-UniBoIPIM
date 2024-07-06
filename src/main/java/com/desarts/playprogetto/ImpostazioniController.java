@@ -59,6 +59,6 @@ public class ImpostazioniController {
     @FXML
     private void handleBackAction() {
         // Torna alla schermata di welcome
-        MainProgettoPlay.showWelcomeScene();
+        MainProgettoPlay.showHomeScene();
     }
 }

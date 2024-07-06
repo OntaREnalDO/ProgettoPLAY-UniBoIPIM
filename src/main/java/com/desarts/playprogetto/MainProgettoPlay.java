@@ -82,7 +82,7 @@ public class MainProgettoPlay extends Application {
             e.printStackTrace();
         }
     }
-
+/*
     // Metodo per visualizzare la scena difficolta
     public static void showDifficultyScene() {
         try {
@@ -92,4 +92,6 @@ public class MainProgettoPlay extends Application {
             e.printStackTrace();
         }
     }
+    */
+
 }

@@ -5,13 +5,11 @@
 
 <Pane fx:controller="com.desarts.playprogetto.DifficultyController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" >
    <children>
-      <Button layoutX="35.0" layoutY="78.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="225.0" text="FACILE" />
-      <Button layoutX="340.0" layoutY="78.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="225.0" text="INTERMEDIO" />
-      <Button layoutX="188.0" layoutY="244.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="225.0" text="DIFFICILE" />
+      <Button layoutX="35.0" layoutY="78.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="225.0" text="FACILE" onAction="#handleEasy"/>
+      <Button layoutX="340.0" layoutY="78.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="225.0" text="INTERMEDIO" onAction="#handleIntermediate"/>
+      <Button layoutX="188.0" layoutY="244.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="225.0" text="DIFFICILE" onAction="#handleExpert"/>
       <ToolBar prefHeight="40.0" prefWidth="600.0">
-        <items>
-          <Button fx:id="backButton" onAction="#handleCloseAction" mnemonicParsing="false" text="X" translateX="565.0" />
-        </items>
+
       </ToolBar>
    </children>
 </Pane>

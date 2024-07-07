@@ -12,13 +12,19 @@ import java.io.IOException;
 public class DifficultyController {
 
     private String exerciseType;  // Variabile per memorizzare il tipo di esercizio selezionato
+    private Stage stage; // Aggiunta della variabile Stage
 
     // Metodo per impostare il tipo di esercizio
     public void setExerciseType(String exerciseType) {
         this.exerciseType = exerciseType;
     }
 
-    @FXML
+    // Aggiunta di un metodo per impostare lo Stage
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
+        @FXML
     private Button facile;
 
     @FXML
@@ -84,8 +90,8 @@ public class DifficultyController {
         }
 
         // Mostra la scena dell'esercizio
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
         stage.setTitle(exerciseType + " - " + difficulty);
         stage.show();
     }

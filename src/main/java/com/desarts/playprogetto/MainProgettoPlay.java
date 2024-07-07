@@ -76,13 +76,20 @@ public class MainProgettoPlay extends Application {
     // Metodo per visualizzare la scena home
     public static void showHomeScene() {
         try {
-            Parent root = FXMLLoader.load(MainProgettoPlay.class.getResource("/com/desarts/playprogetto/home.fxml"));
-            primaryStage.setScene(new Scene(root));
+            FXMLLoader loader = new FXMLLoader(MainProgettoPlay.class.getResource("/com/desarts/playprogetto/home.fxml"));
+            Parent root = loader.load();
+
+            HomeController homeController = loader.getController();
+            homeController.setStage(primaryStage);
+
+            primaryStage.setTitle("Home");
+            primaryStage.setScene(new Scene(root, 800, 600));
+            primaryStage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-/*
+
     // Metodo per visualizzare la scena difficolta
     public static void showDifficultyScene() {
         try {
@@ -92,6 +99,6 @@ public class MainProgettoPlay extends Application {
             e.printStackTrace();
         }
     }
-    */
+
 
 }

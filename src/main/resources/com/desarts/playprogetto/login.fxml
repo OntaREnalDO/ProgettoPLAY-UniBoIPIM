@@ -8,41 +8,42 @@
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="400.0" prefWidth="550.0" spacing="20" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.desarts.playprogetto.LoginController">
-   <VBox prefHeight="110.0" prefWidth="550.0" />
+<VBox alignment="CENTER" prefHeight="600.0" prefWidth="800.0" spacing="20" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.desarts.playprogetto.LoginController">
+   <VBox prefHeight="178.0" prefWidth="800.0" />
 
     <!-- Titolo -->
     <Label style="-fx-font-size: 24px;" text="Login" />
 
     <!-- Form di Login -->
-    <VBox alignment="CENTER" spacing="10.0">
-        <HBox alignment="CENTER" spacing="10">
+    <VBox alignment="CENTER" prefHeight="362.0" prefWidth="800.0" spacing="10.0">
+        <HBox alignment="CENTER" prefHeight="100.0" spacing="10">
             <Label text="Username:" />
             <TextField fx:id="usernameField" />
         </HBox>
-        <HBox alignment="CENTER" spacing="10">
+        <HBox alignment="CENTER" prefHeight="100.0" spacing="10">
             <Label prefHeight="18.0" prefWidth="56.0" text="Password:" />
             <PasswordField fx:id="passwordField" />
         </HBox>
-      <HBox prefHeight="3.0" prefWidth="300.0">
+      <HBox prefHeight="94.0" prefWidth="800.0">
          <children>
             <VBox prefHeight="74.0" prefWidth="86.0" />
             <Label alignment="TOP_CENTER" prefHeight="64.0" prefWidth="392.0" text="ERRORI VARI VERRANNO SEGNALATI QUA" textAlignment="CENTER" textFill="RED" />
             <VBox prefHeight="74.0" prefWidth="86.0" />
          </children>
       </HBox>
-      <ToolBar prefHeight="50.0" prefWidth="550.0">
+      <ToolBar prefHeight="60.0" prefWidth="800.0">
          <items>
-            <VBox prefHeight="115.0" prefWidth="126.0" />
+            <VBox prefHeight="150.0" prefWidth="250.0" />
             <VBox alignment="CENTER" prefHeight="74.0" prefWidth="300.0">
                <children>
-                    <Button fx:id="loginButton" onAction="#handleLoginButtonAction" prefHeight="25.6" prefWidth="66.4" text="Login" />
+                    <Button fx:id="loginButton" onAction="#handleLoginButtonAction" prefHeight="25.0" prefWidth="75.0" text="Login" translateY="-10.0" />
                   <VBox prefHeight="18.0" prefWidth="110.0" />
-                    <Button fx:id="registerButton" onAction="#handleRegisterButtonAction" text="Registrati" />
+                    <Button fx:id="registerButton" onAction="#handleRegisterButtonAction" prefHeight="25.0" prefWidth="75.0" text="Registrati" />
                </children>
             </VBox>
-            <VBox prefHeight="115.0" prefWidth="54.0">
+            <VBox prefHeight="150.0" prefWidth="227.0">
                <children>
                   <VBox prefHeight="27.0" prefWidth="75.0">
                      <children>
@@ -52,9 +53,12 @@
                   <HBox prefHeight="18.0" prefWidth="39.0">
                      <children>
                         <HBox prefHeight="26.0" prefWidth="28.0" />
-                          <Button fx:id="backButton" onAction="#handleBackButtonAction" prefHeight="26.0" prefWidth="105.0" text="⤶" />
                      </children>
                   </HBox>
+                    <Button fx:id="backButton" alignment="CENTER" contentDisplay="CENTER" onAction="#handleBackButtonAction" text="⤶" translateX="175.0" translateY="25.0">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Button>
                </children>
             </VBox>
          </items>

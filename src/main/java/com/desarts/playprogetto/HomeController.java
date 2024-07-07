@@ -14,6 +14,12 @@ import java.io.IOException;
 
 public class HomeController {
 
+    private Stage stage; // Aggiunta della variabile Stage
+
+    // Aggiunta di un metodo per impostare lo Stage
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
     @FXML
     private Button cosa_stampa;
 
@@ -100,9 +106,10 @@ public class HomeController {
 
         DifficultyController controller = loader.getController();
         controller.setExerciseType(exerciseType);
+        controller.setStage(stage); // Impostazione dello Stage nel controller
 
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
         stage.setTitle("Seleziona Difficoltà");
         stage.show();
     }
@@ -110,7 +117,10 @@ public class HomeController {
     public void handleImpostazioniAction(ActionEvent actionEvent) {MainProgettoPlay.showImpostazioniScene();    }
 
     public void handleExit(ActionEvent actionEvent) {MainProgettoPlay.showWelcomeScene();   }
-
+/*
     public void handleDifficoltaAction(ActionEvent actionEvent) {
     }
+
+ */
+
 }

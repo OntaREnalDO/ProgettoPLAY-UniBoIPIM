@@ -2,11 +2,16 @@ package com.desarts.playprogetto;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class CosaStampaController {
 
@@ -232,14 +237,44 @@ public class CosaStampaController {
      */
 
     private void returnToHome() {
-        Stage stage = (Stage) homeButton.getScene().getWindow();
-        stage.close(); // Close current window
+        // Carica la scena Home
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("home.fxml"));
+            Parent root = loader.load();
+
+            // Ottieni il controller della Home e imposta lo stage
+            HomeController homeController = loader.getController();
+            Stage stage = (Stage) nextButton.getScene().getWindow();
+            homeController.setStage(stage);
+
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("Home");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         // Add code to return to home screen and save the result
     }
 
     private void returnToHomeWithoutSaving() {
-        Stage stage = (Stage) homeButton.getScene().getWindow();
-        stage.close(); // Close current window
+        // Carica la scena Home
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("home.fxml"));
+            Parent root = loader.load();
+
+            // Ottieni il controller della Home e imposta lo stage
+            HomeController homeController = loader.getController();
+            Stage stage = (Stage) nextButton.getScene().getWindow();
+            homeController.setStage(stage);
+
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("Home");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         // Add code to return to home screen without saving progress
     }
 
@@ -253,7 +288,21 @@ public class CosaStampaController {
             alert.setContentText("Sei sicuro di voler uscire dall'esercizio? I progressi fatti non verranno salvati.");
             alert.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
-                    stage.close();
+                    try {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("home.fxml"));
+                        Parent root = loader.load();
+
+                        // Ottieni il controller della Home e imposta lo stage
+                        HomeController homeController = loader.getController();
+                        homeController.setStage(stage);
+
+                        Scene scene = new Scene(root);
+                        stage.setScene(scene);
+                        stage.setTitle("Home");
+                        stage.show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             });
         }

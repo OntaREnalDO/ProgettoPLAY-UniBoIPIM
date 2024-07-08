@@ -22,13 +22,14 @@ public class LoginController {
     private PasswordField passwordField;
 
     @FXML
-    private void handleLoginAction(ActionEvent event) {
+    private void handleLoginButtonAction(ActionEvent event) {
         String username = usernameField.getText();
         String password = passwordField.getText();
 
-        // Esempio di verifica delle credenziali
-        if ("admin".equals(username) && "password".equals(password)) {
+        //Verifica delle credenziali
+        if (GestoreUtenti.loginUtente(username, password)) {
             showWelcomeAlert("Login Effettuato", "Benvenuto, " + username + "!");
+            MainProgettoPlay.showHomeScene();
         } else {
             showAlert("Errore di Login", "Credenziali non valide. Riprova.");
         }
@@ -61,7 +62,5 @@ public class LoginController {
         MainProgettoPlay.showRegisterScene();
     }
 
-    public void handleLoginButtonAction(ActionEvent actionEvent) {
 
-    }
 }

@@ -82,7 +82,7 @@ public class MainProgettoPlay extends Application {
             HomeController homeController = loader.getController();
             homeController.setStage(primaryStage);
 
-            primaryStage.setTitle("Home");
+            primaryStage.setTitle("PLAY");
             primaryStage.setScene(new Scene(root));
             primaryStage.show();
         } catch (IOException e) {

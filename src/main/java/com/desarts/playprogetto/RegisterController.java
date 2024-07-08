@@ -12,6 +12,9 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+
+import static com.desarts.playprogetto.GestoreUtenti.registraUtente;
+
 public class RegisterController {
 
     @FXML
@@ -24,7 +27,9 @@ public class RegisterController {
     private PasswordField confirmPasswordField;
 
     @FXML
-    private void handleRegisterAction(ActionEvent event) {
+    private void handleRegisterButtonAction(ActionEvent event) throws IOException {
+
+
         String username = usernameField.getText();
         String password = passwordField.getText();
         String confirmPassword = confirmPasswordField.getText();
@@ -33,8 +38,10 @@ public class RegisterController {
         if (!password.equals(confirmPassword)) {
             showAlert("Errore di Registrazione", "Le password non corrispondono.");
         } else {
-            // Esempio di registrazione utente (sostituire con la tua logica di registrazione)
+            // Utente viene registrato con registraUtente() di GestoriUtenti e mostrato avviso di successo
+            registraUtente(username, password, 0);
             showWelcomeAlert("Registrazione Effettuata", "Benvenuto, " + username + "! Account creato con successo.");
+            MainProgettoPlay.showLoginScene();
         }
     }
 
@@ -56,10 +63,9 @@ public class RegisterController {
 
     @FXML
     public void handleBackButtonAction(ActionEvent event) {
-        MainProgettoPlay.showLoginScene();
+        MainProgettoPlay.showWelcomeScene();
     }
 
-    public void handleRegisterButtonAction(ActionEvent actionEvent) {
-    }
+
 }
 

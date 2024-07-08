@@ -200,7 +200,7 @@ public class TrovaErroreController {
             if (type == buttonTypeConfirm) {
                 returnToHome();
             } else {
-                goToHome();
+                returnToHomeWithoutSaving();
             }
         });
     }
@@ -226,48 +226,13 @@ public class TrovaErroreController {
 
     private void returnToHome() {
         // Carica la scena Home
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("home.fxml"));
-            Parent root = loader.load();
-
-            // Ottieni il controller della Home e imposta lo stage
-            HomeController homeController = loader.getController();
-            Stage stage = (Stage) nextButton.getScene().getWindow();
-            homeController.setStage(stage);
-
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.setTitle("Home");
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        MainProgettoPlay.showHomeScene();
         // Add code to return to home screen and save the result
     }
 
-    private void returnToHomeWithoutSaving() {
-        // Carica la scena Home
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("home.fxml"));
-            Parent root = loader.load();
-
-            // Ottieni il controller della Home e imposta lo stage
-            HomeController homeController = loader.getController();
-            Stage stage = (Stage) nextButton.getScene().getWindow();
-            homeController.setStage(stage);
-
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.setTitle("Home");
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        // Add code to return to home screen without saving progress
-    }
 
     @FXML
-    private void goToHome() {
+    private void returnToHomeWithoutSaving() {
         Stage stage = (Stage) nextButton.getScene().getWindow();
         if (!confirmedExercise) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -276,21 +241,8 @@ public class TrovaErroreController {
             alert.setContentText("Sei sicuro di voler uscire dall'esercizio? I progressi fatti non verranno salvati.");
             alert.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
-                    try {
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("home.fxml"));
-                        Parent root = loader.load();
-
-                        // Ottieni il controller della Home e imposta lo stage
-                        HomeController homeController = loader.getController();
-                        homeController.setStage(stage);
-
-                        Scene scene = new Scene(root);
-                        stage.setScene(scene);
-                        stage.setTitle("Home");
-                        stage.show();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    MainProgettoPlay.showHomeScene();
+                    // Add code to return to home screen without saving progress
                 }
             });
         }

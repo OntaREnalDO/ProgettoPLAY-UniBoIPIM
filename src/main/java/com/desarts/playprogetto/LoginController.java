@@ -58,14 +58,7 @@ public class LoginController {
 
     @FXML
     public void handleRegisterButtonAction(ActionEvent event) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/com/desarts/playprogetto/register.fxml"));
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        MainProgettoPlay.showRegisterScene();
     }
 
     public void handleLoginButtonAction(ActionEvent actionEvent) {

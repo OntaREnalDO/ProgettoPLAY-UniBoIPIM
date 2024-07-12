@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" prefHeight="400.0" prefWidth="550.0" spacing="20" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.desarts.playprogetto.RegisterController">
+<VBox alignment="CENTER" prefHeight="600.0" prefWidth="800.0" spacing="20" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.desarts.playprogetto.RegisterController">
 
     <!-- Titolo -->
     <Label style="-fx-font-size: 24px;" text="Registrazione" />
@@ -38,12 +38,12 @@
                </children></VBox>
             <VBox alignment="CENTER" prefHeight="64.0" prefWidth="70.0">
                <children>
-                  <Label fx:id="errorLabel1" alignment="CENTER" contentDisplay="CENTER" text="Torna a login" />
+                  <Label fx:id="errorLabel1" alignment="CENTER" contentDisplay="CENTER" text="Torna a login" translateX="125.0" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="26.0" prefWidth="35.0">
                <children>
-                    <Button fx:id="backButton" alignment="CENTER" contentDisplay="CENTER" onAction="#handleBackButtonAction" text="⤶" />
+                    <Button fx:id="backButton" alignment="CENTER" contentDisplay="CENTER" onAction="#handleBackButtonAction" text="⤶" translateX="125.0" />
                </children>
             </VBox>
          </children>

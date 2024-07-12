@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.TilePane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.desarts.playprogetto.HomeController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.desarts.playprogetto.HomeController">
    <top>
       <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <items>
-            <Button fx:id="impostazioniButton" onAction="#handleImpostazioniAction" mnemonicParsing="false" text="IMPOSTAZIONI" translateX="375.0" />
-            <Button mnemonicParsing="false" text="INDIETRO" translateX="375.0" />
-          <Button mnemonicParsing="false" text="ESCI" textAlignment="CENTER" translateX="375.0" />
+            <Button fx:id="impostazioniButton" mnemonicParsing="false" onAction="#handleImpostazioniAction" text="IMPOSTAZIONI" translateX="575.0" />
+            <Button mnemonicParsing="false" text="INDIETRO" translateX="575.0" />
+          <Button mnemonicParsing="false" onAction="#handleExit" text="ESCI" textAlignment="CENTER" translateX="575.0" />
         </items>
          <contextMenu>
             <ContextMenu>
@@ -23,24 +31,26 @@
    <center>
       <TilePane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <GridPane prefHeight="358.0" prefWidth="602.0">
+            <GridPane prefHeight="564.0" prefWidth="800.0">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="456.199951171875" minWidth="10.0" prefWidth="401.6000122070312" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="406.60003662109375" minWidth="10.0" prefWidth="398.3999877929688" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints maxHeight="194.0" minHeight="10.0" prefHeight="150.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="191.66665649414062" minHeight="10.0" prefHeight="172.33331298828125" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="386.4" minHeight="10.0" prefHeight="228.79999389648435" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="305.2000335693359" minHeight="0.0" prefHeight="226.0000061035156" vgrow="SOMETIMES" />
               </rowConstraints>
+
                <children>
-                  <Button fx:id="cosa_stampa" onAction="#handleCosaStampaAction" mnemonicParsing="false" prefHeight="75.0" prefWidth="100.0" text="COSA STAMPA" translateX="100.0" />
-                  <Button fx:id="debugging" mnemonicParsing="false" prefHeight="75.0" prefWidth="100.0" text="DEBUGGING" translateX="100.0" GridPane.columnIndex="1" />
-                  <Button fx:id="completa" mnemonicParsing="false" prefHeight="75.0" prefWidth="100.0" text="COMPLETA" translateX="100.0" translateY="-50.0" GridPane.rowIndex="1" />
-                  <Button fx:id="quiz" mnemonicParsing="false" prefHeight="75.0" prefWidth="100.0" text="QUIZ" translateX="100.0" translateY="-50.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <ProgressBar prefWidth="200.0" progress="0.0" translateX="50.0" translateY="50.0" />
-                  <ProgressBar prefWidth="200.0" progress="0.0" translateX="50.0" translateY="50.0" GridPane.columnIndex="1" />
-                  <ProgressBar prefWidth="200.0" progress="0.0" translateX="50.0" GridPane.rowIndex="1" />
-                  <ProgressBar prefWidth="200.0" progress="0.0" translateX="50.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Button fx:id="cosa_stampa" mnemonicParsing="false" onAction="#handleCosaStampaAction" prefHeight="100.0" prefWidth="150.0" style="-fx-font-size: 9pt; -fx-border-color: BLACK;" text="COSA STAMPA" translateX="125.0" />
+                  <Button fx:id="debugging" mnemonicParsing="false" onAction="#handleTrovaErroreAction" prefHeight="100.0" prefWidth="150.0" style="-fx-font-size: 9pt; -fx-border-color: BLACK;" text="TROVA L'ERRORE" translateX="125.0" wrapText="true" GridPane.columnIndex="1" />
+                  <Button fx:id="completa" mnemonicParsing="false" onAction="#handleCompletaFraseAction" prefHeight="100.0" prefWidth="150.0" style="-fx-font-size: 9pt; -fx-border-color: BLACK;" text="COMPLETA LA FRASE" translateX="125.0" translateY="-50.0" wrapText="true" GridPane.rowIndex="1" />
+                  <Button fx:id="quiz" mnemonicParsing="false" onAction="#handleQuizAction" prefHeight="100.0" prefWidth="150.0" style="-fx-font-size: 9pt; -fx-border-color: BLACK;" text="QUIZ" translateX="125.0" translateY="-50.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                  <ProgressBar prefWidth="200.0" progress="0.0" translateX="100.0" translateY="70.0" />
+                  <ProgressBar prefWidth="200.0" progress="0.0" translateX="100.0" translateY="70.0" GridPane.columnIndex="1" />
+                  <ProgressBar prefWidth="200.0" progress="0.0" translateX="100.0" translateY="20.0" GridPane.rowIndex="1" />
+                  <ProgressBar prefWidth="200.0" progress="0.0" translateX="100.0" translateY="20.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
             </GridPane>
          </children>

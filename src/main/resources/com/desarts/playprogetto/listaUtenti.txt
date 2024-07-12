@@ -1,0 +1,9 @@
+utente1, password1, 130
+utente2, password2, 130
+utente3, password3, 130
+utente4, password4, 130
+utente5, password5, 130
+utente6, password6, 130
+utente7, password7, 130
+utente8, password8, 130
+utente9, password9, 130

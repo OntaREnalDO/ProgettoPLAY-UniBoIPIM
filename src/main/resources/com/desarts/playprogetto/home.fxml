@@ -1,23 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ContextMenu?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.ProgressBar?>
-<?import javafx.scene.control.ToolBar?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.desarts.playprogetto.HomeController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.desarts.playprogetto.HomeController">
    <top>
-      <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <ToolBar prefHeight="40.0" prefWidth="667.0" BorderPane.alignment="CENTER">
         <items>
             <Button fx:id="impostazioniButton" mnemonicParsing="false" onAction="#handleImpostazioniAction" text="IMPOSTAZIONI" translateX="575.0" />
-            <Button mnemonicParsing="false" text="INDIETRO" translateX="575.0" />
+            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="73.0" text="INDIETRO" translateX="575.0" />
           <Button mnemonicParsing="false" onAction="#handleExit" text="ESCI" textAlignment="CENTER" translateX="575.0" />
+            <Label fx:id="usernameLabel" prefHeight="18.0" prefWidth="209.0" text="Label" />
         </items>
          <contextMenu>
             <ContextMenu>

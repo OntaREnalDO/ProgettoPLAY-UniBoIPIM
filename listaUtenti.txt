@@ -1,0 +1,3 @@
+wewe, wewe1, 0
+qwerty, qwerty, 0
+utente1, 1234, 0

@@ -15,10 +15,10 @@ public class ImpostazioniController {
 
     // Metodo iniziale per configurare la visibilità dei componenti
     public void initialize() {
-        updateUIBasedOnAuthStatus();
+        aggiornaSchermataWelcome();
     }
 
-    private void updateUIBasedOnAuthStatus() {
+    private void aggiornaSchermataWelcome() {
         boolean isLoggedIn = checkIfUserIsLoggedIn();
         usernameLabel.setVisible(isLoggedIn);
         logoutButton.setVisible(isLoggedIn);
@@ -52,13 +52,14 @@ public class ImpostazioniController {
     @FXML
     private void handleLogoutAction() {
         // Logica per gestire il logout
+
         // Dopo il logout, aggiorna l'interfaccia
-        updateUIBasedOnAuthStatus();
+        aggiornaSchermataWelcome();
     }
 
     @FXML
     private void handleBackAction() {
         // Torna alla schermata di welcome
-        MainProgettoPlay.showHomeScene();
+        MainProgettoPlay.showWelcomeScene();
     }
 }

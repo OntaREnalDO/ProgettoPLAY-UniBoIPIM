@@ -45,7 +45,7 @@ public class RegisterController {
         }
     }
 
-    private void showAlert(String title, String content) {
+    static void showAlert(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
         alert.setHeaderText(null);
@@ -53,7 +53,7 @@ public class RegisterController {
         alert.showAndWait();
     }
 
-    private void showWelcomeAlert(String title, String content) {
+    static void showWelcomeAlert(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
         alert.setHeaderText(null);

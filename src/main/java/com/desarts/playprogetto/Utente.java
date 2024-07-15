@@ -1,7 +1,7 @@
 package com.desarts.playprogetto;
 
 public class Utente {
-    private static String nomeUtente;
+    private String nomeUtente;
     private String password;
     private int punteggio;
 
@@ -14,7 +14,7 @@ public class Utente {
 
 
 
-    // Getter e Setter
+    // Getters e Setters
     public String getNomeUtente() {
         return nomeUtente;
     }

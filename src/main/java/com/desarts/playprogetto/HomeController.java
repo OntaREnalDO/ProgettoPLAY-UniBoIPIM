@@ -14,9 +14,8 @@ import java.io.IOException;
 
 public class HomeController {
 
-    private Stage stage; // Aggiunta della variabile Stage
+    private Stage stage;
 
-    // Aggiunta di un metodo per impostare lo Stage
     public void setStage(Stage stage) {
         this.stage = stage;
     }
@@ -43,37 +42,6 @@ public class HomeController {
 
     @FXML
     private ProgressBar progressBar4;
-/*
-    // Metodo per gestire il click sul bottone COSA STAMPA
-    @FXML
-    private void handleCosaStampaAction() {
-        MainProgettoPlay.showDifficultyScene();
-    }
-
-    // Metodo per gestire il click sul bottone DEBUGGING
-    @FXML
-    private void handleDebuggingAction() {
-        // Aggiungi la logica qui
-    }
-
-    // Metodo per gestire il click sul bottone COMPLETA
-    @FXML
-    private void handleCompletaAction() {
-        // Aggiungi la logica qui
-    }
-
-    // Metodo per gestire il click sul bottone QUIZ
-    @FXML
-    private void handleQuizAction() {
-        // Aggiungi la logica qui
-    }
-
-    // Inizializza i componenti, se necessario
-    @FXML
-    public void initialize() {
-        // Configura i componenti all'avvio, se necessario
-    }
-    */
 
     // Gestisce il clic sul pulsante "Completa la frase"
     @FXML
@@ -116,11 +84,13 @@ public class HomeController {
 
     public void handleImpostazioniAction(ActionEvent actionEvent) {MainProgettoPlay.showImpostazioniScene();    }
 
-    public void handleExit(ActionEvent actionEvent) {MainProgettoPlay.showWelcomeScene();   }
-/*
-    public void handleDifficoltaAction(ActionEvent actionEvent) {
+    public void handleExitAction(ActionEvent actionEvent) {
+        GestoreUtenti.logoutUtente();
+
     }
 
- */
+    public void handleIndietroAction(ActionEvent  actionEvent){
+        MainProgettoPlay.showWelcomeScene();
+    }
 
 }

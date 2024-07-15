@@ -7,7 +7,7 @@ import java.io.IOException;
 
 public class GestoreUtenti {
 
-    private static boolean login = false;
+    static boolean loginCheck = false;
 
     //crea un file dove verranno inseriti gli utenti
     private static final String FILE_TXT = "src/main/resources/com/desarts/playprogetto/listaUtenti.txt";
@@ -33,18 +33,19 @@ public class GestoreUtenti {
         List<Utente> utenti = leggiUtenti();
         for (Utente utente : utenti) {
             if (utente.getNomeUtente().equals(username) && utente.getPassword().equals(password)) {
-                login = true;
+                loginCheck = true;
                 return true; // Login riuscito
             }
         }
-        login = false;
+        loginCheck = false;
         return false; // Credenziali non valide
     }
 
-    public static void loginUtente(){
-        login = false;
+    public static void logoutUtente(){
+        loginCheck = false;
         MainProgettoPlay.showWelcomeScene();
-    }
+    };
+
 
 
     private static List<Utente> leggiUtenti() throws IOException {
@@ -53,6 +54,7 @@ public class GestoreUtenti {
         try (BufferedReader reader = new BufferedReader(new FileReader(FILE_TXT))) {
             String line;
             while ((line = reader.readLine()) != null) {
+
                 String[] data = line.split(",");
                 String nomeUtente = data[0];
                 String password = data[1];

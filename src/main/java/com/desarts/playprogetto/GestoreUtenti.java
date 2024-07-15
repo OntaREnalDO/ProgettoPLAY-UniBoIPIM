@@ -8,6 +8,7 @@ import java.io.IOException;
 public class GestoreUtenti {
 
     static boolean loginCheck = false;
+    static Utente utenteCorrente = null;
 
     //crea un file dove verranno inseriti gli utenti
     private static final String FILE_TXT = "src/main/resources/com/desarts/playprogetto/listaUtenti.txt";
@@ -22,7 +23,7 @@ public class GestoreUtenti {
         }
 
         // Aggiungi nuovo utente
-        utenti.add(new Utente(nomeUtente, password, 0));
+        utenti.add(new Utente(nomeUtente, password));
 
         // Scrivi la lista aggiornata nel file TXT
         scriviUtenti(utenti);
@@ -34,6 +35,7 @@ public class GestoreUtenti {
         for (Utente utente : utenti) {
             if (utente.getNomeUtente().equals(username) && utente.getPassword().equals(password)) {
                 loginCheck = true;
+                utenteCorrente = utente;
                 return true; // Login riuscito
             }
         }
@@ -43,6 +45,8 @@ public class GestoreUtenti {
 
     public static void logoutUtente(){
         loginCheck = false;
+        //aggiungere metodo di salvataggio
+        utenteCorrente = null;
         MainProgettoPlay.showWelcomeScene();
     };
 
@@ -54,15 +58,9 @@ public class GestoreUtenti {
         try (BufferedReader reader = new BufferedReader(new FileReader(FILE_TXT))) {
             String line;
             while ((line = reader.readLine()) != null) {
-
-                String[] data = line.split(",");
-                String nomeUtente = data[0];
-                String password = data[1];
-                int punteggio = Integer.parseInt(data[2]);
-                utenti.add(new Utente(nomeUtente, password, punteggio));
+                utenti.add(Utente.fromDataString(line));
             }
         }
-
         return utenti;
     }
 
@@ -71,10 +69,22 @@ public class GestoreUtenti {
     private static void scriviUtenti(List<Utente> utenti) throws IOException {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_TXT))) {
             for (Utente utente : utenti) {
-                String data = utente.getNomeUtente() + "," + utente.getPassword() + "," + utente.getPunteggio();
-                writer.write(data);
+                writer.write(utente.toDataString());
                 writer.newLine();
             }
         }
     }
+
+    //aggiorna punteggio
+    public static void aggiornaPunteggio(String nomeUtente, String codiceEsercizio, int punteggio) throws IOException {
+        List<Utente> utenti = leggiUtenti();
+        for (Utente utente : utenti) {
+            if (utente.getNomeUtente().equals(nomeUtente)) {
+                utente.setPunteggio(codiceEsercizio, punteggio);
+                scriviUtenti(utenti);
+            }
+        }
+        throw new IllegalArgumentException("Utente non trovato");
+    }
+
 }

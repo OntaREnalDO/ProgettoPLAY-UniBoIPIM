@@ -30,7 +30,6 @@ public class LoginController {
         if (GestoreUtenti.loginUtente(username, password)) {
             showWelcomeAlert("Login Effettuato", "Benvenuto, " + username + "!");
 
-            //aggiornare con metodi di sessione utente
 
             MainProgettoPlay.showHomeScene();
         } else {

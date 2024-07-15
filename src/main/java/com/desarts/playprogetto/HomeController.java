@@ -85,7 +85,7 @@ public class HomeController {
     public void handleImpostazioniAction(ActionEvent actionEvent) {MainProgettoPlay.showImpostazioniScene();    }
 
     public void handleExitAction(ActionEvent actionEvent) {
-        ImpostazioniController.showExitConfirmationAlert();
+        ImpostazioniController.showLogoutAlert();
 
 
     }

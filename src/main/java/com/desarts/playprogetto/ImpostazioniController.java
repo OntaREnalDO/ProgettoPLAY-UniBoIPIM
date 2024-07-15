@@ -7,6 +7,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 
+import java.io.IOException;
+
 public class ImpostazioniController {
 
     @FXML
@@ -21,7 +23,7 @@ public class ImpostazioniController {
         aggiornaSchermataWelcome();
     }
 
-    private void aggiornaSchermataWelcome() {
+    private void aggiornaSchermataWelcome() throws IOException {
         boolean isLoggedIn = checkIfUserIsLoggedIn();
         usernameLabel.setVisible(isLoggedIn);
         logoutButton.setVisible(isLoggedIn);
@@ -36,14 +38,16 @@ public class ImpostazioniController {
 
     // Simula il controllo dello stato di login
     private boolean checkIfUserIsLoggedIn() {
-        // Questo dovrebbe essere sostituito con la tua logica di autenticazione
-        return false;
+        // logica di autenticazione
+        return GestoreUtenti.loginCheck;
+
+
     }
 
     // Simula l'ottenimento del nome utente loggato
-    private String getLoggedInUsername() {
-        // Sostituisci con la logica appropriata per ottenere il nome utente
-        return "Utente1";
+    private String getLoggedInUsername() throws IOException {
+
+        return GestoreUtenti.utenteCorrente.getNomeUtente();
     }
 
     @FXML
@@ -55,7 +59,7 @@ public class ImpostazioniController {
     @FXML
     private void handleLogoutAction() {
         // Logica per gestire il logout
-
+        showLogoutAlert();
         // Dopo il logout, aggiorna l'interfaccia
         aggiornaSchermataWelcome();
     }
@@ -85,8 +89,9 @@ public class ImpostazioniController {
         alert.showAndWait();
     }
 
-    public static void showExitConfirmationAlert() {
-        // Creazione dell'Alert di tipo CONFIRMATION
+    // Alert di conferma logout a due opzioni
+    public static void showLogoutAlert() {
+
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Conferma Uscita");
         alert.setHeaderText("Sei sicuro di voler uscire?");

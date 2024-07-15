@@ -9,10 +9,10 @@ public class WelcomeController {
     @FXML
     private void handleIniziaAction(ActionEvent event) {
         if(GestoreUtenti.loginCheck){
-        RegisterController.showWelcomeAlert("Benvenuto" + "nome utente", "Inizia a giocare!");
+            ImpostazioniController.showWelcomeAlert("Benvenuto" + "nome utente", "Inizia a giocare!");
         MainProgettoPlay.showHomeScene();
     }    else{
-        RegisterController.showAlert("", "Devi prima effettuare l'accesso");
+            ImpostazioniController.showAlert("", "Devi prima effettuare l'accesso");
         }
     }
 

@@ -1,3 +1,4 @@
 utente1,qqq,0
 utente2,qqq,0
 utente5,qqq,0
+qwer,123,0

@@ -36,30 +36,16 @@ public class RegisterController {
 
         // Verifica che le password siano identiche
         if (!password.equals(confirmPassword)) {
-            showAlert("Errore di Registrazione", "Le password non corrispondono.");
+            ImpostazioniController.showAlert("Errore di Registrazione", "Le password non corrispondono.");
         } else {
             // Utente viene registrato con registraUtente() di GestoriUtenti e mostrato avviso di successo
             registraUtente(username, password);
-            showWelcomeAlert("Registrazione Effettuata", "Benvenuto, " + username + "! Account creato con successo.");
+            ImpostazioniController.showWelcomeAlert("Registrazione Effettuata", "Benvenuto, " + username + "! Account creato con successo.");
             MainProgettoPlay.showLoginScene();
         }
     }
 
-    static void showAlert(String title, String content) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(content);
-        alert.showAndWait();
-    }
 
-    static void showWelcomeAlert(String title, String content) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(content);
-        alert.showAndWait();
-    }
 
     @FXML
     public void handleBackButtonAction(ActionEvent event) {

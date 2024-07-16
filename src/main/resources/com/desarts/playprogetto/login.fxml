@@ -29,7 +29,6 @@
       <HBox prefHeight="94.0" prefWidth="800.0">
          <children>
             <VBox prefHeight="74.0" prefWidth="86.0" />
-            <Label alignment="TOP_CENTER" prefHeight="64.0" prefWidth="392.0" text="ERRORI VARI VERRANNO SEGNALATI QUA" textAlignment="CENTER" textFill="RED" />
             <VBox prefHeight="74.0" prefWidth="86.0" />
          </children>
       </HBox>

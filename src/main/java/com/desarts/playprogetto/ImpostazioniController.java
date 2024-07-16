@@ -19,7 +19,7 @@ public class ImpostazioniController {
     private Button logoutButton;
 
     // Metodo iniziale per configurare la visibilità dei componenti
-    public void initialize() {
+    public void initialize() throws IOException {
         aggiornaSchermataWelcome();
     }
 
@@ -57,7 +57,7 @@ public class ImpostazioniController {
     }
 
     @FXML
-    private void handleLogoutAction() {
+    private void handleLogoutAction() throws IOException {
         // Logica per gestire il logout
         showLogoutAlert();
         // Dopo il logout, aggiorna l'interfaccia

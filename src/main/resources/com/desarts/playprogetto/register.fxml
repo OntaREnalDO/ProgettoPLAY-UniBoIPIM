@@ -28,7 +28,6 @@
             <Label prefHeight="18.0" prefWidth="110.0" text="Conferma Password:" />
             <PasswordField fx:id="confirmPasswordField" prefHeight="26.0" prefWidth="150.0" />
         </HBox>
-      <Label alignment="TOP_CENTER" prefHeight="38.0" prefWidth="310.0" text="ERRORI MISMATCH PASSW NOME UTENTE GIA UTILIZZATO etc" textFill="RED" />
       <HBox alignment="CENTER" prefHeight="2.0" prefWidth="550.0">
          <children>
             <VBox prefHeight="26.0" prefWidth="116.0" />

@@ -12,6 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 
 import static com.desarts.playprogetto.GestoreUtenti.registraUtente;
 
@@ -27,7 +28,7 @@ public class RegisterController {
     private PasswordField confirmPasswordField;
 
     @FXML
-    private void handleRegisterButtonAction(ActionEvent event) throws IOException {
+    private void handleRegisterButtonAction(ActionEvent event) throws IOException, NoSuchAlgorithmException {
 
 
         String username = usernameField.getText();

@@ -2,17 +2,19 @@ package com.desarts.playprogetto;
 
 import java.io.*;
 import java.util.*;
+
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 
 
-public class GestoreUtenti {
+public class GestoreUtenti{
 
     static boolean loginCheck = false;
     static Utente utenteCorrente = null;
-
     //crea un file dove verranno inseriti gli utenti
     private static final String FILE_TXT = "src/main/resources/com/desarts/playprogetto/listaUtenti.txt";
-    public static void registraUtente(String nomeUtente, String password) throws IOException {
+
+    public static void registraUtente(String nomeUtente, String password) throws IOException, NoSuchAlgorithmException {
         List<Utente> utenti = leggiUtenti();
 
         // Verifica se l'utente esiste gia'
@@ -30,25 +32,30 @@ public class GestoreUtenti {
     }
 
     // Metodo per effettuare il login
-    public static boolean loginUtente(String username, String password) throws IOException {
-        List<Utente> utenti = leggiUtenti();
-        for (Utente utente : utenti) {
-            if (utente.getNomeUtente().equals(username) && utente.getPassword().equals(password)) {
-                loginCheck = true;
-                utenteCorrente = utente;
-                return true; // Login riuscito
+        public static boolean loginUtente(String username, String password) {
+            try {
+                List<Utente> utenti = leggiUtenti();
+                for (Utente utente : utenti) {
+                    if (utente.getNomeUtente().equals(username) && utente.verificaPassword(password)) {
+                        loginCheck = true;
+                        utenteCorrente = utente;
+                        return true; // Login riuscito
+                    }
+                }
+            } catch (IOException | NoSuchAlgorithmException e) {
+                e.printStackTrace();
             }
+            loginCheck = false;
+            return false; // Credenziali non valide
         }
-        loginCheck = false;
-        return false; // Credenziali non valide
-    }
+
 
     public static void logoutUtente(){
         loginCheck = false;
         //aggiungere metodo di salvataggio
         utenteCorrente = null;
         MainProgettoPlay.showWelcomeScene();
-    };
+    }
 
 
 
@@ -60,6 +67,8 @@ public class GestoreUtenti {
             while ((line = reader.readLine()) != null) {
                 utenti.add(Utente.fromDataString(line));
             }
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
         }
         return utenti;
     }
@@ -80,7 +89,7 @@ public class GestoreUtenti {
         List<Utente> utenti = leggiUtenti();
         for (Utente utente : utenti) {
             if (utente.getNomeUtente().equals(nomeUtente)) {
-                utente.setPunteggio(codiceEsercizio, punteggio);
+                utente.setPunteggioSingolo(codiceEsercizio, punteggio);
                 scriviUtenti(utenti);
             }
         }

@@ -8,6 +8,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class MainProgettoPlay extends Application {
 
@@ -33,7 +34,7 @@ public class MainProgettoPlay extends Application {
     // Metodo per visualizzare la scena di benvenuto
     public static void showWelcomeScene() {
         try {
-            Parent root = FXMLLoader.load(MainProgettoPlay.class.getResource("src/main/resources/com/desarts/playprogetto/+welcome.fxml"));
+            Parent root = FXMLLoader.load(Objects.requireNonNull(MainProgettoPlay.class.getResource("welcome.fxml")));
             primaryStage.setScene(new Scene(root));
         } catch (IOException e) {
             e.printStackTrace();
@@ -43,7 +44,7 @@ public class MainProgettoPlay extends Application {
     // Metodo per visualizzare la scena di login
     public static void showLoginScene() {
         try {
-            Parent root = FXMLLoader.load(MainProgettoPlay.class.getResource("src/main/resources/com/desarts/playprogetto/login.fxml"));
+            Parent root = FXMLLoader.load(Objects.requireNonNull(MainProgettoPlay.class.getResource("login.fxml")));
             primaryStage.setScene(new Scene(root));
         } catch (IOException e) {
             e.printStackTrace();
@@ -54,7 +55,7 @@ public class MainProgettoPlay extends Application {
         // Metodo per visualizzare la scena delle impostazioni
         public static void showImpostazioniScene() {
             try {
-                Parent root = FXMLLoader.load(MainProgettoPlay.class.getResource("src/main/resources/com/desarts/playprogetto/impostazioni.fxml"));
+                Parent root = FXMLLoader.load(Objects.requireNonNull(MainProgettoPlay.class.getResource("impostazioni.fxml")));
                 primaryStage.setScene(new Scene(root));
             } catch (IOException e) {
                 e.printStackTrace();
@@ -65,7 +66,7 @@ public class MainProgettoPlay extends Application {
     // Metodo per visualizzare la scena di registrazione
     public static void showRegisterScene() {
         try {
-            Parent root = FXMLLoader.load(MainProgettoPlay.class.getResource("src/main/resources/com/desarts/playprogetto/register.fxml"));
+            Parent root = FXMLLoader.load(Objects.requireNonNull(MainProgettoPlay.class.getResource("register.fxml")));
             primaryStage.setScene(new Scene(root));
         } catch (IOException e) {
             e.printStackTrace();
@@ -76,7 +77,7 @@ public class MainProgettoPlay extends Application {
     // Metodo per visualizzare la scena home
     public static void showHomeScene() {
         try {
-            FXMLLoader loader = new FXMLLoader(MainProgettoPlay.class.getResource("src/main/resources/com/desarts/playprogetto/home.fxml"));
+            FXMLLoader loader = new FXMLLoader(MainProgettoPlay.class.getResource("home.fxml"));
             Parent root = loader.load();
 
             HomeController homeController = loader.getController();
@@ -89,16 +90,4 @@ public class MainProgettoPlay extends Application {
             e.printStackTrace();
         }
     }
-/*
-    // Metodo per visualizzare la scena difficolta
-    public static void showDifficultyScene() {
-        try {
-            Parent root = FXMLLoader.load(MainProgettoPlay.class.getResource("/com/desarts/playprogetto/difficolta_cs.fxml"));
-            primaryStage.setScene(new Scene(root));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-*/
-
 }

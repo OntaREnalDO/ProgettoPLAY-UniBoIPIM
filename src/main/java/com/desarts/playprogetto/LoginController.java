@@ -12,6 +12,8 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+
 
 public class LoginController {
 
@@ -22,20 +24,21 @@ public class LoginController {
     private PasswordField passwordField;
 
     @FXML
-    private void handleLoginButtonAction(ActionEvent event) throws IOException {
+    private void handleLoginButtonAction(ActionEvent event) {
         String username = usernameField.getText();
         String password = passwordField.getText();
 
-        //Verifica delle credenziali
+        // Verifica delle credenziali
         if (GestoreUtenti.loginUtente(username, password)) {
             showWelcomeAlert("Login Effettuato", "Benvenuto, " + username + "!");
-
-
             MainProgettoPlay.showHomeScene();
         } else {
             showAlert("Errore di Login", "Credenziali non valide. Riprova.");
         }
     }
+
+
+
 
     private void showAlert(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -63,6 +66,7 @@ public class LoginController {
     public void handleRegisterButtonAction(ActionEvent event) {
         MainProgettoPlay.showRegisterScene();
     }
+
 
 
 }

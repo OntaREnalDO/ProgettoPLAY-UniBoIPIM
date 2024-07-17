@@ -31,7 +31,7 @@ public class LoginController {
         // Verifica delle credenziali
         if (GestoreUtenti.loginUtente(username, password)) {
             showWelcomeAlert("Login Effettuato", "Benvenuto, " + username + "!");
-            MainProgettoPlay.showHomeScene();
+            MainProgettoPlay.showWelcomeScene();
         } else {
             showAlert("Errore di Login", "Credenziali non valide. Riprova.");
         }

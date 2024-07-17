@@ -12,11 +12,13 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 
 public class QuizAppController {
 
     private int currentQuestion = 0;  // Indice della domanda corrente
     private int score = 0;  // Punteggio dell'utente
+    private String codiceEsercizioCorrente = ""; //codice dell'esercizio completato
     private boolean[] answeredCorrectlyFirstAttempt = new boolean[5];  // Tiene traccia delle risposte corrette al primo tentativo
     private String difficulty;  // Difficoltà selezionata
     private String[] questions;  // Array delle domande
@@ -25,6 +27,7 @@ public class QuizAppController {
     private int[] attempts = new int[5];  // Tiene traccia dei tentativi per ogni domanda
     private boolean confirmedExercise = false;  // Indica se l'esercizio è stato confermato
 
+    Utente utenteCorrente = GestoreUtenti.getUtenteCorrente();
 
     @FXML
     private Button nextButton;
@@ -59,6 +62,7 @@ public class QuizAppController {
 
     // Carica le domande e le risposte in base alla difficoltà
     private void loadQuestionsAndAnswers() {
+        codiceEsercizioCorrente = generaCodiceEsercizio(difficulty);
         switch (difficulty) {
             case "easy":
                 questions = new String[]{
@@ -113,6 +117,7 @@ public class QuizAppController {
                 break;
         }
     }
+
     // Carica la domanda corrente
     private void loadQuestion() {
         if (questions == null) {
@@ -143,7 +148,7 @@ public class QuizAppController {
     private void handleAnswer(int index) {
         if (index == correctAnswers[currentQuestion]) {
             if (attempts[currentQuestion] == 0) {
-                score++;
+                score += 100;
             }
             showCorrectAlert();
         } else {
@@ -157,7 +162,7 @@ public class QuizAppController {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Risposta Corretta");
         alert.setHeaderText(null);
-        alert.setContentText("Bravo! Risposta Corretta");
+        alert.setContentText("Risposta Corretta! Puoi procedere");
         alert.showAndWait();
         nextButton.setDisable(false);
         for (Button btn : answerButtons) {
@@ -188,22 +193,27 @@ public class QuizAppController {
     // Mostra il risultato finale
     private void showResult() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Risultato");
+        alert.setTitle("Risultato del Quiz");
         alert.setHeaderText(null);
-        alert.setContentText("Il tuo punteggio è: " + score + "/5\nConferma l'esercizio per salvare il tuo punteggio!");
+        String resultText = "Il tuo punteggio è: " + score + "/500\n";
+        if (score >= 300) {
+            resultText += "Hai completato l'esercizio! Congratulazioni " + utenteCorrente.getNomeUtente() + "!";
 
-        ButtonType buttonTypeConfirm  = new ButtonType("Conferma l'esercizio");
-        ButtonType buttonTypeCancel  = new ButtonType("Non salvare");
-        alert.getButtonTypes().setAll(buttonTypeConfirm, buttonTypeCancel);
+        } else {
+            resultText += "Esercizio non superato! Riprova!";
+        }
+        alert.setContentText(resultText);
+
+        ButtonType buttonTypeConfirm = new ButtonType("Fine esercizio");
+        alert.getButtonTypes().setAll(buttonTypeConfirm);
 
         alert.showAndWait().ifPresent(type -> {
             if (type == buttonTypeConfirm) {
-                returnToHome();
-            } else {
-                returnToHomeWithoutSaving();
+                returnToHome();//metodo che salva anche il punteggio
             }
         });
     }
+
 
     //Per gestire il bottone "Torna alla home" durante l'esercizio
     @FXML
@@ -213,8 +223,8 @@ public class QuizAppController {
         alert.setHeaderText("Sei sicuro di voler uscire dall'esercizio?");
         alert.setContentText("I progressi fatti non verranno salvati");
 
+        ButtonType buttonTypeHome  = new ButtonType("Torna alla home");
         ButtonType buttonTypeCancel = new ButtonType("Annulla");
-        ButtonType buttonTypeHome = new ButtonType("Torna alla home");
         alert.getButtonTypes().setAll(buttonTypeCancel, buttonTypeHome);
 
         alert.showAndWait().ifPresent(type -> {
@@ -225,9 +235,17 @@ public class QuizAppController {
     }
 
     private void returnToHome() {
-        // Carica la scena Home
-        MainProgettoPlay.showHomeScene();
-        // Add code to return to home screen and save the result
+        //Salva il punteggio
+            try {
+                GestoreUtenti.aggiornaPunteggioUtente(utenteCorrente.getNomeUtente(), codiceEsercizioCorrente, score);
+                // Carica la scena Home
+                MainProgettoPlay.showHomeScene();
+            } catch (IOException e) {
+                e.printStackTrace();
+                // Gestisci l'errore qui, ad esempio mostrando un messaggio all'utente
+            } catch (NoSuchAlgorithmException e) {
+                throw new RuntimeException(e);
+            }
     }
 
 
@@ -242,9 +260,32 @@ public class QuizAppController {
             alert.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
                     MainProgettoPlay.showHomeScene();
-                    // Add code to return to home screen without saving progress
+
                 }
             });
         }
     }
+
+//genera codice esercizio per salvatagio su file
+    private String generaCodiceEsercizio(String difficulty) {
+        String typeCode = "D"; // usiamo "D" per quiz
+        int levelCode;
+
+        switch (difficulty.toLowerCase()) {
+            case "easy":
+                levelCode = 1;
+                break;
+            case "intermediate":
+                levelCode = 2;
+                break;
+            case "expert":
+                levelCode = 3;
+                break;
+            default:
+                throw new IllegalArgumentException("Difficoltà non riconosciuta");
+        }
+
+        return typeCode + levelCode; // Costruisce il codice come "D1", "D2", "D3"
+    }
+
 }

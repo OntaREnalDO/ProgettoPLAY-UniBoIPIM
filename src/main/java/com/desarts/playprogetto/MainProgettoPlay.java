@@ -20,7 +20,7 @@ public class MainProgettoPlay extends Application {
     public void start(Stage stage) {
         MainProgettoPlay.primaryStage = stage;
         showWelcomeScene();  // Mostra la scena di benvenuto all'avvio
-        Image icon = new Image("com/desarts/playprogetto/25521.jpg");
+        Image icon = new Image("com/desarts/playprogetto/immagini/25521.jpg");
         primaryStage.getIcons().add(icon);   // Aggiunge l'icona in alto a sinistra nella schermata
         primaryStage.setResizable(false);    // Non ti permette di ingrandire la schermata
         primaryStage.setTitle("Progetto Play by DesArts");

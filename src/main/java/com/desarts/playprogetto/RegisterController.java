@@ -38,7 +38,8 @@ public class RegisterController {
         // Verifica che le password siano identiche
         if (!password.equals(confirmPassword)) {
             ImpostazioniController.showAlert("Errore di Registrazione", "Le password non corrispondono.");
-        } else {
+
+        }  else {
             // Utente viene registrato con registraUtente() di GestoriUtenti e mostrato avviso di successo
             registraUtente(username, password);
             ImpostazioniController.showWelcomeAlert("Registrazione Effettuata", "Benvenuto, " + username + "! Account creato con successo.");

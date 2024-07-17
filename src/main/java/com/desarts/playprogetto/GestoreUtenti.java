@@ -20,6 +20,7 @@ public class GestoreUtenti{
         // Verifica se l'utente esiste gia'
         for (Utente utente : utenti) {
             if (utente.getNomeUtente().equals(nomeUtente)) {
+                ImpostazioniController.showAlert("Errore di Registrazione", "Nome utente gia' esistente");
                 throw new IllegalArgumentException("Nome utente gia' esistente");
             }
         }
@@ -38,6 +39,7 @@ public class GestoreUtenti{
                 for (Utente utente : utenti) {
                     if (utente.getNomeUtente().equals(username) && utente.verificaPassword(password)) {
                         loginCheck = true;
+                        //assegna a utenteCorrente un istanza dell'utente che ha appena effettuato il login
                         utenteCorrente = utente;
                         return true; // Login riuscito
                     }
@@ -51,8 +53,8 @@ public class GestoreUtenti{
 
 
     public static void logoutUtente(){
+
         loginCheck = false;
-        //aggiungere metodo di salvataggio
         utenteCorrente = null;
         MainProgettoPlay.showWelcomeScene();
     }
@@ -85,15 +87,24 @@ public class GestoreUtenti{
     }
 
     //aggiorna punteggio
-    public static void aggiornaPunteggio(String nomeUtente, String codiceEsercizio, int punteggio) throws IOException {
+    public static void aggiornaPunteggioUtente(String username, String codiceEsercizio, int punteggio) throws IOException, NoSuchAlgorithmException {
         List<Utente> utenti = leggiUtenti();
+        boolean found = false;
         for (Utente utente : utenti) {
-            if (utente.getNomeUtente().equals(nomeUtente)) {
+            if (utente.getNomeUtente().equals(username)) {
                 utente.setPunteggioSingolo(codiceEsercizio, punteggio);
-                scriviUtenti(utenti);
+                found = true;
+                break;
             }
         }
-        throw new IllegalArgumentException("Utente non trovato");
+        if (!found) {
+            throw new IllegalArgumentException("Utente non trovato");
+        }
+        scriviUtenti(utenti);
     }
 
+    // getter di utenteCorrente
+    public static Utente getUtenteCorrente() {
+        return utenteCorrente;
+    }
 }

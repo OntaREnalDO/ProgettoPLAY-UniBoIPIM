@@ -6,6 +6,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.Base64;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 
@@ -20,14 +21,20 @@ public class Utente {
     public Utente(String nomeUtente, String password) throws NoSuchAlgorithmException {
         this.nomeUtente = nomeUtente;
         this.salt = generateSalt();  // Genera un nuovo salt per ogni nuovo utente
-        this.passwordHash = hashPassword(password, this.salt);  // Usa il salt per l'hash della password
-        this.punteggi = new HashMap<>();
-        // Inizializza i punteggi per ogni tipo di esercizio e difficoltà
-        for (char tipo = 'A'; tipo <= 'D'; tipo++) {
-            for (int difficolta = 1; difficolta <= 3; difficolta++) {
-                this.punteggi.put("" + tipo + difficolta, 0);
+        this.passwordHash = hashPassword(password, this.salt);  // Usa il salt con password per crittografare
+        this.punteggi = inizializzaLinkedHashMap();
+    }
+
+    //uso hashmap ordinata
+    private Map<String, Integer> inizializzaLinkedHashMap() {
+        Map<String, Integer> codiciEsercizi = new LinkedHashMap<>(); // Usa LinkedHashMap per mantenere l'ordine
+        char[] levels = {'A', 'B', 'C', 'D'}; // I livelli di difficoltà
+        for (char level : levels) {
+            for (int i = 1; i <= 3; i++) {
+                codiciEsercizi.put("" + level + i, 0); // Crea chiavi da "A1"a"D3"
             }
         }
+        return codiciEsercizi;
     }
 
     // Costruttore per utenti con dati già registrati
@@ -39,7 +46,7 @@ public class Utente {
     }
 
 
-    // Metodo per hashare la password
+    // Metodo per crittografare la password
     private String hashPassword(String password, String salt) throws NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance("SHA-256");
         md.update(Base64.getDecoder().decode(salt));  // Aggiunge salt al digest

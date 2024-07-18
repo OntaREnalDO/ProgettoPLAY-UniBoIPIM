@@ -62,6 +62,7 @@ public class QuizAppController {
 
     // Carica le domande e le risposte in base alla difficoltà
     private void loadQuestionsAndAnswers() {
+        //implemento per prima cosa il codice esercizio per il salvataggio su file
         codiceEsercizioCorrente = generaCodiceEsercizio(difficulty);
         switch (difficulty) {
             case "easy":
@@ -235,8 +236,9 @@ public class QuizAppController {
     }
 
     private void returnToHome() {
-        //Salva il punteggio
+
             try {
+                //Salva il punteggio aggiornato a fine esercizio su file
                 GestoreUtenti.aggiornaPunteggioUtente(utenteCorrente.getNomeUtente(), codiceEsercizioCorrente, score);
                 // Carica la scena Home
                 MainProgettoPlay.showHomeScene();

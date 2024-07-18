@@ -5,11 +5,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
+
 
 import java.io.IOException;
 
@@ -19,7 +20,8 @@ public class TrovaErroreController {
     private int score = 0;  // Punteggio dell'utente
     private boolean[] answeredCorrectlyFirstAttempt = new boolean[5];  // Tiene traccia delle risposte corrette al primo tentativo
     private String difficulty;  // Difficoltà selezionata
-    private String[] questions;  // Array delle domande
+    private String[] questionImages;
+    // Array delle domande
     private String[][] answers;  // Array delle risposte
     private int[] correctAnswers;  // Indici delle risposte corrette
     private int[] attempts = new int[5];  // Tiene traccia dei tentativi per ogni domanda
@@ -28,7 +30,6 @@ public class TrovaErroreController {
 
     @FXML
     private Button nextButton;
-
     @FXML
     private Button answerButton1;
     @FXML
@@ -39,9 +40,12 @@ public class TrovaErroreController {
     private Button answerButton4;
     @FXML
     private Button homeButton;
-
     @FXML
     private Label questionLabel;
+    @FXML
+    private ScrollPane questionScrollPane; // ScrollPane per le immagini delle domande
+    @FXML
+    private ImageView questionImageView; // ImageView per visualizzare le immagini delle domande
 
     private Button[] answerButtons; // Array dei pulsanti di risposta
 
@@ -61,66 +65,69 @@ public class TrovaErroreController {
     private void loadQuestionsAndAnswers() {
         switch (difficulty) {
             case "easy":
-                questions = new String[]{
-                        "Qual è la capitale d'Italia?",
-                        "Qual è la capitale della Francia?",
-                        "Qual è la capitale della Germania?",
-                        "Qual è la capitale della Spagna?",
-                        "Qual è la capitale del Regno Unito?"
+                questionImages = new String[]{
+                        "/com/desarts/playprogetto/immagini/ef1.png",
+                        "/com/desarts/playprogetto/immagini/ef2.png",
+                        "/com/desarts/playprogetto/immagini/ef3.png",
+                        "/com/desarts/playprogetto/immagini/ef4.png",
+                        "/com/desarts/playprogetto/immagini/ef5.png"
                 };
                 answers = new String[][]{
-                        {"Roma", "Milano", "Napoli", "Torino"},
-                        {"Parigi", "Marsiglia", "Lione", "Nizza"},
-                        {"Berlino", "Monaco", "Amburgo", "Colonia"},
-                        {"Madrid", "Barcellona", "Valencia", "Siviglia"},
-                        {"Londra", "Manchester", "Birmingham", "Liverpool"}
+                        {"A) Cambiare \"5\" in 5", "B) Cambiare int in String per la variabile a", "C) Cambiare System.out.println(a + b); in System.out.println(a - b);", "D) Cambiare b in una stringa"},
+                        {"A) Cambiare 5 in 3", "B) Cambiare i-- in i++", "C) Cambiare int in double per la variabile i", "D) Cambiare < in <="},
+                        {"A) Cambiare <= in <", "B) Cambiare i++ in i--", "C) Cambiare int in double per la variabile i", "D) Aggiungere un elemento all'array"},
+                        {"A) Cambiare int in double per la variabile x", "B) Cambiare 5 in 10", "C) Cambiare System.out.println(\"x is 5\"); in System.out.println(x); ", "D) Cambiare = in =="},
+                        {"A) Cambiare <= in <", "B) Cambiare str.charAt(i) in str.charAt(i - 1)", "C) Cambiare String in int per la variabile str", "D) Cambiare i++ in i--"}
                 };
-                correctAnswers = new int[]{0, 0, 0, 0, 0};
+                correctAnswers = new int[]{0, 1, 0, 3, 0};
                 break;
             case "intermediate":
-                questions = new String[]{
-                        "Qual è la capitale del Giappone?",
-                        "Qual è la capitale della Cina?",
-                        "Qual è la capitale della Russia?",
-                        "Qual è la capitale dell'India?",
-                        "Qual è la capitale del Brasile?"
+                questionImages = new String[]{
+                        "/com/desarts/playprogetto/immagini/ei1.png",
+                        "/com/desarts/playprogetto/immagini/ei2.png",
+                        "/com/desarts/playprogetto/immagini/ei3.png",
+                        "/com/desarts/playprogetto/immagini/ei4.png",
+                        "/com/desarts/playprogetto/immagini/ei5.png"
                 };
                 answers = new String[][]{
-                        {"Tokyo", "Osaka", "Nagoya", "Sapporo"},
-                        {"Pechino", "Shanghai", "Shenzhen", "Guangzhou"},
-                        {"Mosca", "San Pietroburgo", "Novosibirsk", "Ekaterinburg"},
-                        {"Nuova Delhi", "Mumbai", "Bangalore", "Chennai"},
-                        {"Brasilia", "Rio de Janeiro", "San Paolo", "Salvador"}
+                        {"A) Cambiare <= in <; i++)", "B) Cambiare total += arr[i] in total += i", "C) Cambiare int[] arr in String[] arr", "D) Cambiare System.out.println(sum(arr)); in System.out.println(sum(arr));"},
+                        {"A) Cambiare = in ==", "B) Cambiare return 1 in return 0", "C) Cambiare int in double per la variabile n", "D) Cambiare return n * factorial(n - 1); in return n + factorial(n - 1);"},
+                        {"A) Cambiare private String name in public String name", "B) Cambiare p.setName(\"Alice\"); in p.name = \"Alice\";", "C) Cambiare == in =", "D) Cambiare getName() in getNome()"},
+                        {"A) Cambiare private String color in public String color", "B) Cambiare Colour in color", "C) Cambiare Car myCar in Car mycar", "D) Cambiare myCar.getColor() in myCar.getColor;"},
+                        {"A) Cambiare arr[i] == target in arr[i] = target", "B Cambiare for (int i = 0; i < arr.length; i++) in for (int i = 0; i <= arr.length; i++)",  "C) Cambiare boolean found in int found", "D) Non ci sono errori"}
                 };
-                correctAnswers = new int[]{0, 0, 0, 0, 0};
+                correctAnswers = new int[]{0, 0, 2, 1, 3};
                 break;
             case "expert":
-                questions = new String[]{
-                        "Qual è la capitale dell'Australia?",
-                        "Qual è la capitale del Canada?",
-                        "Qual è la capitale dell'Egitto?",
-                        "Qual è la capitale dell'Argentina?",
-                        "Qual è la capitale della Nigeria?"
+                questionImages = new String[]{
+                        "/com/desarts/playprogetto/immagini/ee1.png",
+                        "/com/desarts/playprogetto/immagini/ee2.png",
+                        "/com/desarts/playprogetto/immagini/ee3.png",
+                        "/com/desarts/playprogetto/immagini/ee4.png",
+                        "/com/desarts/playprogetto/immagini/ee5.png"
                 };
                 answers = new String[][]{
-                        {"Canberra", "Sydney", "Melbourne", "Brisbane"},
-                        {"Ottawa", "Toronto", "Vancouver", "Montreal"},
-                        {"Il Cairo", "Alessandria", "Giza", "Luxor"},
-                        {"Buenos Aires", "Cordoba", "Rosario", "Mendoza"},
-                        {"Abuja", "Lagos", "Kano", "Ibadan"}
+                        {"A) Cambiare a.makeSound() in ((Dog) a).makeSound()", "B) Cambiare class Dog extends Animal in class Dog implements Animal", "C) Cambiare public void makeSound() in private void makeSound()", "D) Non ci sono errori"},
+                        {"A) Cambiare list.add(\"Apple\"); in list.add(0, \"Apple\")", "B) Cambiare ArrayList<String> in List<String>", "C) Cambiare list.get(3) in list.get(2)", "D) Non ci sono errori"},
+                        {"A) Non ci sono errori", "B) Cambiare class B extends A in class B", "C) Cambiare public A() in private A()", "D) Aggiungere super() al costruttore di B"},
+                        {"A) Cambiare class C extends B in class C", "B) Cambiare @Override in @Overload", "C) Cambiare System.out.println(\"Display from C\") in System.out.println(\"Display from B\")", "D) Non ci sono errori"},
+                        {"A) Cambiare super(5); in super.setVal(5);", "B) Cambiare class D extends C in class D", "C) Aggiungere un costruttore di default a C", "D) Non ci sono errori"}
                 };
-                correctAnswers = new int[]{0, 0, 0, 0, 0};
+                correctAnswers = new int[]{0, 2, 3, 1, 1};
                 break;
         }
     }
     // Carica la domanda corrente
     private void loadQuestion() {
-        if (questions == null) {
+        if (questionImages == null) {
             return; // Gestisce il caso in cui le domande non sono ancora caricate
         }
 
-        if (currentQuestion < questions.length) {
-            questionLabel.setText(questions[currentQuestion]);
+        if (currentQuestion < questionImages.length) {
+            //carica immagine domanda corrente
+            Image questionImage = new Image(questionImages[currentQuestion]);
+            questionImageView.setImage(questionImage);
+
             for (int i = 0; i < answerButtons.length; i++) {
                 answerButtons[i].setText(answers[currentQuestion][i]);
                 answerButtons[i].setDisable(false);
@@ -132,7 +139,7 @@ public class TrovaErroreController {
             showResult();
         }
         // Cambia il testo del pulsante all'ultima domanda
-        if (currentQuestion == questions.length - 1) {
+        if (currentQuestion == questionImages.length - 1) {
             nextButton.setText("Conferma esercizio");
         } else {
             nextButton.setText("Prossima domanda");
@@ -178,7 +185,7 @@ public class TrovaErroreController {
     @FXML
     private void nextQuestion() {
         currentQuestion++;
-        if (currentQuestion < questions.length) {
+        if (currentQuestion < questionImages.length) {
             loadQuestion();
         } else {
             showResult();

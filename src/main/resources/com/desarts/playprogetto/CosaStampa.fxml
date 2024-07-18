@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 
-<VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="800.0" spacing="20.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.desarts.playprogetto.CosaStampaController">
+<VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="800.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.desarts.playprogetto.CosaStampaController">
     <children>
         <HBox alignment="TOP_RIGHT" spacing="10.0">
             <children>
@@ -14,20 +13,21 @@
             </children>
         </HBox>
         <Label fx:id="questionLabel" prefHeight="100.0" style="-fx-font-size: 16pt;" />
-        <VBox alignment="CENTER" prefHeight="350.0" prefWidth="760.0" spacing="20.0">
+        <ScrollPane prefHeight="294.0" prefWidth="760.0">
+            <content>
+                <VBox fx:id="vBox" fillWidth="true">
+                    <!-- ImageView to display the question image -->
+                    <ImageView fx:id="questionImageView" fitHeight="355.0" fitWidth="748.0" layoutX="2.0" layoutY="-92.0" preserveRatio="true" />
+                </VBox>
+            </content>
+        </ScrollPane>
+        <VBox alignment="CENTER" prefHeight="115.0" prefWidth="760.0" spacing="20.0">
             <children>
-                <HBox alignment="CENTER" prefHeight="75.0" prefWidth="760.0" spacing="20.0">
+                <HBox alignment="CENTER" prefHeight="81.0" prefWidth="760.0" spacing="20.0">
                     <children>
-                        <Button fx:id="answerButton1" mnemonicParsing="false" style="-fx-font-size: 14pt;" />
-                        <Button fx:id="answerButton2" mnemonicParsing="false" style="-fx-font-size: 14pt;" />
-                    </children>
-                </HBox>
-                <HBox alignment="CENTER" prefHeight="75.0" prefWidth="760.0" spacing="20.0">
-                    <children>
-                        <Button fx:id="answerButton3" mnemonicParsing="false" style="-fx-font-size: 14pt;" />
-                        <Button fx:id="answerButton4" mnemonicParsing="false" style="-fx-font-size: 14pt;" />
-                    </children>
-                </HBox>
+                        <TextArea fx:id="text" promptText="scrivi qui la risposta" />
+                        <Button fx:id="conferma" mnemonicParsing="false" onAction="#conferma" text="Conferma" />
+                    </children></HBox>
             </children>
         </VBox>
         <HBox alignment="BOTTOM_RIGHT" spacing="20.0">

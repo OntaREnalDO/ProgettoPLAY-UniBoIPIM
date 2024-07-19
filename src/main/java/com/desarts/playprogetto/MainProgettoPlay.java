@@ -13,6 +13,8 @@ import java.util.Objects;
 public class MainProgettoPlay extends Application {
 
     private static Stage primaryStage;  // Lo stage principale dell'applicazione
+    private static HomeController homeController;
+
 
 
 
@@ -34,7 +36,7 @@ public class MainProgettoPlay extends Application {
     // Metodo per visualizzare la scena di benvenuto
     public static void showWelcomeScene() {
         try {
-            Parent root = FXMLLoader.load(Objects.requireNonNull(MainProgettoPlay.class.getResource("welcome.fxml")));
+            Parent root = FXMLLoader.load(Objects.requireNonNull(MainProgettoPlay.class.getResource( "welcome.fxml")));
             primaryStage.setScene(new Scene(root));
         } catch (IOException e) {
             e.printStackTrace();
@@ -80,14 +82,20 @@ public class MainProgettoPlay extends Application {
             FXMLLoader loader = new FXMLLoader(MainProgettoPlay.class.getResource("home.fxml"));
             Parent root = loader.load();
 
-            HomeController homeController = loader.getController();
+            // Ottieni il controller della scena home
+            homeController = loader.getController();
             homeController.setStage(primaryStage);
+            homeController.updateProgressBars(); // Aggiorna le progress bar ogni volta che viene mostrata la home
 
-            primaryStage.setTitle("PLAY");
             primaryStage.setScene(new Scene(root));
+            primaryStage.setTitle("PLAY");
             primaryStage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static HomeController getHomeController() {
+        return homeController;
     }
 }

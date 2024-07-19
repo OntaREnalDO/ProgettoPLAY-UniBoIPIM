@@ -35,25 +35,7 @@ public class DifficultyController {
 
     @FXML
     private Button BackButton;
-/*
-    // Metodo per gestire il clic sul bottone "FACILE"
-    @FXML
-    private void handleFacileAction() {
-        // Logica per la difficoltà facile
-    }
 
-    // Metodo per gestire il clic sul bottone "INTERMEDIO"
-    @FXML
-    private void handleIntermedioAction() {
-        // Logica per la difficoltà intermedia
-    }
-
-    // Metodo per gestire il clic sul bottone "DIFFICILE"
-    @FXML
-    private void handleDifficileAction() {
-        // Logica per la difficoltà difficile
-    }
-    */
     // Gestisce il clic sul pulsante "Facile"
     @FXML
     private void handleEasy() throws IOException {

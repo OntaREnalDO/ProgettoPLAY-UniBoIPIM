@@ -3,14 +3,14 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.desarts.playprogetto.HomeController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.desarts.playprogetto.HomeController" stylesheets="@progress.css">
    <top>
       <ToolBar prefHeight="40.0" prefWidth="667.0" BorderPane.alignment="CENTER">
         <items>
             <Button fx:id="impostazioniButton" mnemonicParsing="false" onAction="#handleImpostazioniAction" text="IMPOSTAZIONI" translateX="575.0" />
-            <Button fx:id="indietroButton" onAction="#handleIndietroAction" mnemonicParsing="false" prefHeight="26.0" prefWidth="73.0" text="INDIETRO" translateX="575.0" />
+            <Button fx:id="indietroButton" mnemonicParsing="false" onAction="#handleIndietroAction" prefHeight="26.0" prefWidth="73.0" text="INDIETRO" translateX="575.0" />
           <Button fx:id="esciButton" mnemonicParsing="false" onAction="#handleExitAction" text="ESCI" textAlignment="CENTER" translateX="575.0" />
-            <Label fx:id="usernameLabel" prefHeight="18.0" prefWidth="209.0" text="Label" />
+            <Label fx:id="usernameLabel" prefHeight="18.0" prefWidth="209.0" text="Nome Utente" />
         </items>
          <contextMenu>
             <ContextMenu>
@@ -40,10 +40,10 @@
                   <Button fx:id="completa" mnemonicParsing="false" onAction="#handleCompletaFraseAction" prefHeight="100.0" prefWidth="150.0" style="-fx-font-size: 9pt; -fx-border-color: BLACK;" text="COMPLETA LA FRASE" translateX="125.0" translateY="-50.0" wrapText="true" GridPane.rowIndex="1" />
                   <Button fx:id="quiz" mnemonicParsing="false" onAction="#handleQuizAction" prefHeight="100.0" prefWidth="150.0" style="-fx-font-size: 9pt; -fx-border-color: BLACK;" text="QUIZ" translateX="125.0" translateY="-50.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-                  <ProgressBar prefWidth="200.0" progress="0.0" translateX="100.0" translateY="70.0" />
-                  <ProgressBar prefWidth="200.0" progress="0.0" translateX="100.0" translateY="70.0" GridPane.columnIndex="1" />
-                  <ProgressBar prefWidth="200.0" progress="0.0" translateX="100.0" translateY="20.0" GridPane.rowIndex="1" />
-                  <ProgressBar prefWidth="200.0" progress="0.0" translateX="100.0" translateY="20.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <ProgressBar fx:id="progressBar1" prefWidth="200.0" progress="0.0" translateX="100.0" translateY="70.0" />
+                  <ProgressBar fx:id="progressBar2" prefWidth="200.0" progress="0.0" translateX="100.0" translateY="70.0" GridPane.columnIndex="1" />
+                  <ProgressBar fx:id="progressBar3" prefWidth="200.0" progress="0.0" translateX="100.0" translateY="20.0" GridPane.rowIndex="1" />
+                  <ProgressBar fx:id="progressBar4" prefWidth="200.0" progress="0.0" translateX="100.0" translateY="20.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
             </GridPane>
          </children>

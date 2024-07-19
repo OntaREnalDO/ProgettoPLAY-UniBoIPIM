@@ -1,5 +1,6 @@
 package com.desarts.playprogetto;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,7 +27,7 @@ public class QuizAppController {
     private int[] correctAnswers;  // Indici delle risposte corrette
     private int[] attempts = new int[5];  // Tiene traccia dei tentativi per ogni domanda
     private boolean confirmedExercise = false;  // Indica se l'esercizio è stato confermato
-
+//creo istanza di utenteCorrente
     Utente utenteCorrente = GestoreUtenti.getUtenteCorrente();
 
     @FXML
@@ -196,58 +197,78 @@ public class QuizAppController {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Risultato del Quiz");
         alert.setHeaderText(null);
+        // Preparazione del messaggio di risultato
         String resultText = "Il tuo punteggio è: " + score + "/500\n";
+        // Verifica se l'esercizio è stato superato
         if (score >= 300) {
             resultText += "Hai completato l'esercizio! Congratulazioni " + utenteCorrente.getNomeUtente() + "!";
 
-        } else {
-            resultText += "Esercizio non superato! Riprova!";
+            // Recupera il punteggio corrente salvato per l'esercizio
+            int currentStoredScore = utenteCorrente.getPunteggioSingolo(codiceEsercizioCorrente);
+
+            // Aggiorna il punteggio solo se il nuovo è maggiore di quello già registrato
+            //quindi salva anche il punteggio se l'esercizio non e' mai stato fatto
+            // Logica per l'aggiornamento del punteggio e della progress bar
+            if (currentStoredScore == 0 || score > currentStoredScore) {
+                // Salva il nuovo punteggio se è la prima volta o se è migliore del precedente
+                try {
+                    salvaPartita();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }   else {
+                resultText += "Esercizio non superato! Riprova!";
+            }
+            alert.setContentText(resultText);
+
+            ButtonType buttonTypeConfirm = new ButtonType("Fine esercizio");
+            alert.getButtonTypes().setAll(buttonTypeConfirm);
+
+            alert.showAndWait().ifPresent(type -> {
+                if (type == buttonTypeConfirm) {
+                   returnToHome();
+                }
+            });
         }
-        alert.setContentText(resultText);
 
-        ButtonType buttonTypeConfirm = new ButtonType("Fine esercizio");
-        alert.getButtonTypes().setAll(buttonTypeConfirm);
-
-        alert.showAndWait().ifPresent(type -> {
-            if (type == buttonTypeConfirm) {
-                returnToHome();//metodo che salva anche il punteggio
+    // Metodo per aggiornare la progress bar dopo aver completato l'esercizio
+    private void aggiornaProgressBar() {
+        Platform.runLater(() -> {
+            HomeController homeController = MainProgettoPlay.getHomeController();
+            if (homeController != null) {
+                homeController.updateProgressBars();
             }
         });
     }
 
 
-    //Per gestire il bottone "Torna alla home" durante l'esercizio
-    @FXML
-    private void handleHome(ActionEvent event) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Conferma");
-        alert.setHeaderText("Sei sicuro di voler uscire dall'esercizio?");
-        alert.setContentText("I progressi fatti non verranno salvati");
+        //Per gestire il bottone "Torna alla home" durante l'esercizio
+        @FXML
+        private void handleHome (ActionEvent event){
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Conferma");
+            alert.setHeaderText("Sei sicuro di voler uscire dall'esercizio?");
+            alert.setContentText("I progressi fatti non verranno salvati");
 
-        ButtonType buttonTypeHome  = new ButtonType("Torna alla home");
-        ButtonType buttonTypeCancel = new ButtonType("Annulla");
-        alert.getButtonTypes().setAll(buttonTypeCancel, buttonTypeHome);
+            ButtonType buttonTypeHome = new ButtonType("Torna alla home");
+            ButtonType buttonTypeCancel = new ButtonType("Annulla");
+            alert.getButtonTypes().setAll(buttonTypeCancel, buttonTypeHome);
 
-        alert.showAndWait().ifPresent(type -> {
-            if (type == buttonTypeHome) {
-                returnToHomeWithoutSaving();
-            }
-        });
-    }
+            alert.showAndWait().ifPresent(type -> {
+                if (type == buttonTypeHome) {
+                    returnToHomeWithoutSaving();
+                }
+            });
+        }
 
     private void returnToHome() {
+        // Carica la scena Home
+        MainProgettoPlay.showHomeScene();
+    }
 
-            try {
-                //Salva il punteggio aggiornato a fine esercizio su file
-                GestoreUtenti.aggiornaPunteggioUtente(utenteCorrente.getNomeUtente(), codiceEsercizioCorrente, score);
-                // Carica la scena Home
-                MainProgettoPlay.showHomeScene();
-            } catch (IOException e) {
-                e.printStackTrace();
-                // Gestisci l'errore qui, ad esempio mostrando un messaggio all'utente
-            } catch (NoSuchAlgorithmException e) {
-                throw new RuntimeException(e);
-            }
+    private void salvaPartita() throws IOException, NoSuchAlgorithmException {
+        GestoreUtenti.aggiornaPunteggioUtente(utenteCorrente.getNomeUtente(), codiceEsercizioCorrente, score);
     }
 
 
@@ -289,5 +310,4 @@ public class QuizAppController {
 
         return typeCode + levelCode; // Costruisce il codice come "D1", "D2", "D3"
     }
-
 }

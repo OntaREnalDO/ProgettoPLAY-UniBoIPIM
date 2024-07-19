@@ -11,13 +11,13 @@ import javafx.stage.Stage;
 import java.util.Objects;
 public class CosaStampaController {
 
-    private int currentQuestion = 0; // Indice della domanda corrente
-    private int score = 0;  // Punteggio dell'utente
-    private String difficulty; // Difficoltà selezionata
+    private int currentQuestion = 0;
+    private int score = 0;
+    private String difficulty;
 
-    private String[] questions; // Array delle domande
-    private String[] correctAnswers;  // Indici delle risposte corrette
-    private int[] attempts;   // Tiene traccia dei tentativi per ogni domanda
+    private String[] questions;
+    private String[] correctAnswers;
+    private int[] attempts;
 
     @FXML
     private Button nextButton;
@@ -137,7 +137,7 @@ public class CosaStampaController {
         String userAnswer = text.getText().trim();
         if (userAnswer.equals(correctAnswers[currentQuestion])) {
             if (attempts[currentQuestion] == 0) {
-                score+=100;
+                score++;
             }
             showCorrectAlert();
             conferma.setDisable(true);

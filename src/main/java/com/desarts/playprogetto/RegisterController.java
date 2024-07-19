@@ -34,9 +34,9 @@ public class RegisterController {
         String username = usernameField.getText();
         String password = passwordField.getText();
         String confirmPassword = confirmPasswordField.getText();
-
-        // Verifica che le password siano identiche
-        if (!password.equals(confirmPassword)) {
+    if(username.equals("") || password.equals("") || confirmPassword.equals("")) {//garantisce che le casele di testo non siano vuote
+        ImpostazioniController.showAlert("Errore di Registrazione", "Compila tutti i campi.");
+    }else if (!password.equals(confirmPassword)) { // Verifica che le password siano identiche
             ImpostazioniController.showAlert("Errore di Registrazione", "Le password non corrispondono.");
 
         }  else {

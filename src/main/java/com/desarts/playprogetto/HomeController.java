@@ -1,12 +1,14 @@
 
 package com.desarts.playprogetto;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.stage.Stage;
 
@@ -15,15 +17,17 @@ import java.io.IOException;
 public class HomeController {
 
     private Stage stage;
+    private Utente utenteCorrente;
 
     public void setStage(Stage stage) {
         this.stage = stage;
     }
+
     @FXML
     private Button cosa_stampa;
 
     @FXML
-    private Button debugging;
+    private Label usernameLabel;
 
     @FXML
     private Button completa;
@@ -32,16 +36,25 @@ public class HomeController {
     private Button quiz;
 
     @FXML
-    private ProgressBar progressBar1;
+    private  ProgressBar progressBar1;
 
     @FXML
-    private ProgressBar progressBar2;
+    private  ProgressBar progressBar2;
 
     @FXML
-    private ProgressBar progressBar3;
+    private  ProgressBar progressBar3;
 
     @FXML
-    private ProgressBar progressBar4;
+    private  ProgressBar progressBar4;
+
+    @FXML
+    public void initialize() {
+        utenteCorrente = GestoreUtenti.getUtenteCorrente();
+        if (utenteCorrente != null) {
+            handleUsernameLabel();
+            updateProgressBars();
+        }
+    }
 
     // Gestisce il clic sul pulsante "Completa la frase"
     @FXML
@@ -67,6 +80,16 @@ public class HomeController {
         loadDifficultySelection("QuizApp");
     }
 
+    @FXML
+    public void handleUsernameLabel() {
+        //Scrive il nome utente nella schermata home
+        Utente utenteCorrente = GestoreUtenti.getUtenteCorrente();
+        if (utenteCorrente != null && usernameLabel != null) {
+            String nomeUtenteCorrente = utenteCorrente.getNomeUtente();
+            usernameLabel.setText(nomeUtenteCorrente);
+        }
+    }
+
     // Carica la finestra di selezione della difficoltà
     private void loadDifficultySelection(String exerciseType) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("difficolta_cs.fxml"));
@@ -82,7 +105,9 @@ public class HomeController {
         stage.show();
     }
 
-    public void handleImpostazioniAction(ActionEvent actionEvent) {MainProgettoPlay.showImpostazioniScene();    }
+    public void handleImpostazioniAction(ActionEvent actionEvent) {
+        MainProgettoPlay.showImpostazioniScene();
+    }
 
     public void handleExitAction(ActionEvent actionEvent) {
         ImpostazioniController.showLogoutAlert();
@@ -90,8 +115,35 @@ public class HomeController {
 
     }
 
-    public void handleIndietroAction(ActionEvent  actionEvent){
+    public void handleIndietroAction(ActionEvent actionEvent) {
         MainProgettoPlay.showWelcomeScene();
+    }
+
+    public void updateProgressBars() {
+        if (utenteCorrente != null) {
+
+            // Aggiorna la progress bar per ogni gruppo di esercizi
+            updateSingleProgressBar(progressBar1, new String[]{"A1", "A2", "A3"}, utenteCorrente);
+            updateSingleProgressBar(progressBar2, new String[]{"B1", "B2", "B3"}, utenteCorrente);
+            updateSingleProgressBar(progressBar3, new String[]{"C1", "C2", "C3"}, utenteCorrente);
+            updateSingleProgressBar(progressBar4, new String[]{"D1", "D2", "D3"}, utenteCorrente);
+        }
+    }
+
+    // Metodo ausiliario per aggiornare una singola progress bar
+    private void updateSingleProgressBar(ProgressBar progressBar, String[] codiciEsercizi, Utente utente) {
+        Platform.runLater(() -> {
+            int eserciziCompletati = 0;
+            for (String codiceEsercizio : codiciEsercizi) {
+                if (utente.getPunteggioSingolo(codiceEsercizio) >= 300) {
+                    eserciziCompletati++;
+                }
+            }
+            double progress = (double)eserciziCompletati / 3.0;//aumenta in proporzione agli esercizi completati
+            progressBar.setProgress(progress);
+        });
+
+
     }
 
 }

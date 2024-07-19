@@ -85,6 +85,7 @@ public class Utente {
 
     public int getPunteggioSingolo(String codiceEsercizio) {
         return punteggi.getOrDefault(codiceEsercizio, 0);
+
     }
 
     public void setPunteggioSingolo(String codiceEsercizio, int punteggio) {

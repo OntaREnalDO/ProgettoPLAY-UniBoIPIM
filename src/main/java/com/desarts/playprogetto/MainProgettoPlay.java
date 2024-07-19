@@ -81,15 +81,13 @@ public class MainProgettoPlay extends Application {
         try {
             FXMLLoader loader = new FXMLLoader(MainProgettoPlay.class.getResource("home.fxml"));
             Parent root = loader.load();
-
-            // Ottieni il controller della scena home
-            homeController = loader.getController();
-            homeController.setStage(primaryStage);
-            homeController.updateProgressBars(); // Aggiorna le progress bar ogni volta che viene mostrata la home
-
-            primaryStage.setScene(new Scene(root));
-            primaryStage.setTitle("PLAY");
+            HomeController controller = loader.getController();
+            controller.setStage(primaryStage); // Impostazione dello Stage nel controller
+            Scene scene = new Scene(root);
+            primaryStage.setScene(scene);
+            primaryStage.setTitle("Home");
             primaryStage.show();
+            setHomeController(controller); // Salva l'istanza del controller
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -97,5 +95,9 @@ public class MainProgettoPlay extends Application {
 
     public static HomeController getHomeController() {
         return homeController;
+    }
+
+    public static void setHomeController(HomeController controller) {
+        homeController = controller;
     }
 }

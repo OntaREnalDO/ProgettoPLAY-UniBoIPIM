@@ -153,7 +153,7 @@ public class CompletaFraseController {
     private void handleAnswer(int index) {
         if (index == correctAnswers[currentQuestion]) {
             if (attempts[currentQuestion] == 0) {
-                score++;
+                score+=100;
             }
             showCorrectAlert();
         } else {
@@ -287,7 +287,7 @@ public class CompletaFraseController {
 
     //genera codice esercizio per salvatagio su file
     private String generaCodiceEsercizio(String difficulty) {
-        String typeCode = "A";
+        String typeCode = "C";
         int levelCode;
 
         switch (difficulty.toLowerCase()) {

@@ -154,7 +154,7 @@ public class TrovaErroreController {
     private void handleAnswer(int index) {
         if (index == correctAnswers[currentQuestion]) {
             if (attempts[currentQuestion] == 0) {
-                score++;
+                score+=100;
             }
             showCorrectAlert();
         } else {
@@ -285,7 +285,7 @@ public class TrovaErroreController {
 
     //genera codice esercizio per salvatagio su file
     private String generaCodiceEsercizio(String difficulty) {
-        String typeCode = "C";
+        String typeCode = "B";
         int levelCode;
 
         switch (difficulty.toLowerCase()) {

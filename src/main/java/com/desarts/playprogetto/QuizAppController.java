@@ -213,6 +213,8 @@ public class QuizAppController {
                 // Salva il nuovo punteggio se è la prima volta o se è migliore del precedente
                 try {
                     salvaPartita();
+                    //progress bar
+                   // HomeController.incrementProgressBar(1.0 / 3.0, "D");
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

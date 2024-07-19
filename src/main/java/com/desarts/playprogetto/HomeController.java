@@ -50,10 +50,10 @@ public class HomeController {
     @FXML
     public void initialize() {
         utenteCorrente = GestoreUtenti.getUtenteCorrente();
-        if (utenteCorrente != null) {
-            handleUsernameLabel();
-            updateProgressBars();
-        }
+        handleUsernameLabel(); // Aggiorna il nome utente nella label
+        updateProgressBars();
+
+
     }
 
     // Gestisce il clic sul pulsante "Completa la frase"
@@ -83,7 +83,6 @@ public class HomeController {
     @FXML
     public void handleUsernameLabel() {
         //Scrive il nome utente nella schermata home
-        Utente utenteCorrente = GestoreUtenti.getUtenteCorrente();
         if (utenteCorrente != null && usernameLabel != null) {
             String nomeUtenteCorrente = utenteCorrente.getNomeUtente();
             usernameLabel.setText(nomeUtenteCorrente);
@@ -111,8 +110,6 @@ public class HomeController {
 
     public void handleExitAction(ActionEvent actionEvent) {
         ImpostazioniController.showLogoutAlert();
-
-
     }
 
     public void handleIndietroAction(ActionEvent actionEvent) {
@@ -142,8 +139,7 @@ public class HomeController {
             double progress = (double)eserciziCompletati / 3.0;//aumenta in proporzione agli esercizi completati
             progressBar.setProgress(progress);
         });
-
-
     }
+
 
 }

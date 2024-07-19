@@ -143,7 +143,7 @@ public class CosaStampaController {
         String userAnswer = text.getText().trim();
         if (userAnswer.equals(correctAnswers[currentQuestion])) {
             if (attempts[currentQuestion] == 0) {
-                score++;
+                score+=100;
             }
             showCorrectAlert();
             conferma.setDisable(true);
@@ -269,7 +269,7 @@ public class CosaStampaController {
 
     //genera codice esercizio per salvatagio su file
     private String generaCodiceEsercizio(String difficulty) {
-        String typeCode = "B";
+        String typeCode = "A";
         int levelCode;
 
         switch (difficulty.toLowerCase()) {

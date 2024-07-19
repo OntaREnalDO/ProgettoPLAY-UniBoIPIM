@@ -195,8 +195,6 @@ public class QuizAppController {
             if (currentStoredScore == 0 || score > currentStoredScore) {
                 try {
                     salvaPartita();
-                    //progress bar
-                   // HomeController.incrementProgressBar(1.0 / 3.0, "D");
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -216,6 +214,7 @@ public class QuizAppController {
             });
         }
 
+        //non funziona, tolto dall'implementazione
     private void aggiornaProgressBar() {
         Platform.runLater(() -> {
             HomeController homeController = MainProgettoPlay.getHomeController();

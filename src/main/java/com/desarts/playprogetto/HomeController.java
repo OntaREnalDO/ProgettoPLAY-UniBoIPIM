@@ -13,11 +13,13 @@ import javafx.scene.control.ProgressBar;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 public class HomeController {
 
     private Stage stage;
-    private Utente utenteCorrente;
+    private static Utente utenteCorrente;
 
     public void setStage(Stage stage) {
         this.stage = stage;
@@ -48,13 +50,16 @@ public class HomeController {
     private  ProgressBar progressBar4;
 
     @FXML
-    public void initialize() {
+    public void initialize() throws IOException, NoSuchAlgorithmException {
         utenteCorrente = GestoreUtenti.getUtenteCorrente();
         handleUsernameLabel(); // Aggiorna il nome utente nella label
         updateProgressBars();
-
-
+        GestoreUtenti.aggiornaPunteggioUtente(utenteCorrente.getNomeUtente());
     }
+
+
+
+
 
     // Gestisce il clic sul pulsante "Completa la frase"
     @FXML
@@ -131,6 +136,7 @@ public class HomeController {
     private void updateSingleProgressBar(ProgressBar progressBar, String[] codiciEsercizi, Utente utente) {
         Platform.runLater(() -> {
             int eserciziCompletati = 0;
+
             for (String codiceEsercizio : codiciEsercizi) {
                 if (utente.getPunteggioSingolo(codiceEsercizio) >= 300) {
                     eserciziCompletati++;

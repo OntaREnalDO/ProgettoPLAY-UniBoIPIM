@@ -95,6 +95,22 @@ public class GestoreUtenti{
         scriviUtenti(utenti);
     }
 
+    //per aggiornare le progress bar in diretta
+    public static void aggiornaPunteggioUtente(String username) throws IOException, NoSuchAlgorithmException {
+        List<Utente> utenti = leggiUtenti();
+        boolean found = false;
+        for (Utente utente : utenti) {
+            if (utente.getNomeUtente().equals(username)){
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            throw new IllegalArgumentException("Utente non trovato");
+        }
+        scriviUtenti(utenti);
+    }
+
     public static Utente getUtenteCorrente() {
         return utenteCorrente;
     }

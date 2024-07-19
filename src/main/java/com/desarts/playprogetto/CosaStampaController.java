@@ -15,14 +15,13 @@ public class CosaStampaController {
 
     private int currentQuestion = 0;
     private int score = 0;
-    private String codiceEsercizioCorrente = ""; //codice dell'esercizio completato
+    private String codiceEsercizioCorrente = ""; 
 
     private String difficulty;
 
     private String[] questions;
     private String[] correctAnswers;
     private int[] attempts;
-    //creo istanza di utenteCorrente
     Utente utenteCorrente = GestoreUtenti.getUtenteCorrente();
 
     @FXML
@@ -48,7 +47,6 @@ public class CosaStampaController {
 
     private String currentAnswer = "Risposta corretta";
 
-    // Imposta la difficoltà e carica le domande e risposte corrispondenti
     public void setDifficulty(String difficulty) {
         this.difficulty = difficulty;
         loadQuestionsAndAnswers();
@@ -56,7 +54,6 @@ public class CosaStampaController {
         loadQuestion();
     }
 
-    // Carica le domande e le risposte in base alla difficoltà
     private void loadQuestionsAndAnswers() {
         switch (difficulty) {
             case "easy":
@@ -110,10 +107,9 @@ public class CosaStampaController {
         }
         attempts = new int[questions.length];
     }
-    // Carica la domanda corrente
     private void loadQuestion() {
         if (questions == null) {
-            return; // Gestisce il caso in cui le domande non sono ancora caricate
+            return; 
         }
 
         if (currentQuestion < correctAnswers.length) {
@@ -130,7 +126,6 @@ public class CosaStampaController {
         } else {
             showResult();
         }
-        // Cambia il testo del pulsante all'ultima domanda
         if (currentQuestion == correctAnswers.length - 1) {
             nextButton.setText("Conferma esercizio");
         } else {
@@ -138,7 +133,6 @@ public class CosaStampaController {
         }
     }
 
-    // Gestisce la risposta
     private void handleAnswer() {
         String userAnswer = text.getText().trim();
         if (userAnswer.equals(correctAnswers[currentQuestion])) {
@@ -154,7 +148,6 @@ public class CosaStampaController {
         }
     }
 
-    // Mostra un alert di risposta corretta
     private void showCorrectAlert() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Risposta Corretta");
@@ -164,7 +157,6 @@ public class CosaStampaController {
         nextButton.setDisable(false);
     }
 
-    // Mostra un alert di risposta errata
     private void showErrorAlert(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
@@ -173,7 +165,6 @@ public class CosaStampaController {
         alert.showAndWait();
     }
 
-    // Carica la domanda successiva o mostra il risultato
     @FXML
     private void nextQuestion() {
         if(!nextButton.isDisabled()) {
@@ -185,29 +176,19 @@ public class CosaStampaController {
         }
     }
 
-    // Mostra il risultato finale
     private void showResult() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Risultato del Quiz");
         alert.setHeaderText(null);
-        // Preparazione del messaggio di risultato
         String resultText = "Il tuo punteggio è: " + score + "/500\n";
-        // Verifica se l'esercizio è stato superato
         if (score >= 300) {
             resultText += "Hai completato l'esercizio! Congratulazioni " + utenteCorrente.getNomeUtente() + "!";
 
-            // Recupera il punteggio corrente salvato per l'esercizio
             int currentStoredScore = utenteCorrente.getPunteggioSingolo(codiceEsercizioCorrente);
 
-            // Aggiorna il punteggio solo se il nuovo è maggiore di quello già registrato
-            //quindi salva anche il punteggio se l'esercizio non e' mai stato fatto
-            // Logica per l'aggiornamento del punteggio e della progress bar
             if (currentStoredScore == 0 || score > currentStoredScore) {
-                // Salva il nuovo punteggio se è la prima volta o se è migliore del precedente
                 try {
                     salvaPartita();
-                    //progressbar
-                    //HomeController.incrementProgressBar(1.0 / 3.0, "B");
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -227,7 +208,6 @@ public class CosaStampaController {
         });
     }
 
-    //Per gestire il bottone "Torna alla home" durante l'esercizio
     @FXML
     private void handleHome(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -246,14 +226,12 @@ public class CosaStampaController {
         });
     }
 
-    //conferma risposta
     @FXML
     private void conferma(ActionEvent event) {
         handleAnswer();
     }
 
     private void returnToHome() {
-        // Carica la scena Home
         MainProgettoPlay.showHomeScene();
     }
 
@@ -263,11 +241,10 @@ public class CosaStampaController {
 
     private void returnToHomeWithoutSaving() {
         Stage stage = (Stage) nextButton.getScene().getWindow();
-        stage.close(); // Chiude la finestra dell'esercizio
-        MainProgettoPlay.showHomeScene(); // Mostra la scena Home
+        stage.close();
+        MainProgettoPlay.showHomeScene();
     }
 
-    //genera codice esercizio per salvatagio su file
     private String generaCodiceEsercizio(String difficulty) {
         String typeCode = "B";
         int levelCode;
@@ -286,6 +263,6 @@ public class CosaStampaController {
                 throw new IllegalArgumentException("Difficoltà non riconosciuta");
         }
 
-        return typeCode + levelCode; // Costruisce il codice come "D1", "D2", "D3"
+        return typeCode + levelCode; 
     }
 }

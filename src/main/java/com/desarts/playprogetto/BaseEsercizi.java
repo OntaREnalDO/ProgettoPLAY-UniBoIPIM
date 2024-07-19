@@ -7,15 +7,15 @@ import javafx.scene.control.Label;
 
 public abstract class BaseEsercizi {
 
-    protected int currentQuestion = 0;  // Indice della domanda corrente
-    protected int score = 0;  // Punteggio corrente dell'utente
-    protected String[] questions;  // Array delle domande
-    protected String[][] answers;  // Matrice delle risposte
-    protected Object[] correctAnswers;  // Array degli indici delle risposte corrette
-    protected int[] attempts;  // Array dei tentativi per ogni domanda
-    protected boolean confirmedExercise = false;  // Indica se l'esercizio e' stato confermato
-    protected int difficulty;  // Difficolta' corrente
-    protected String codiceEsercizioCorrente;  // Codice dell'esercizio corrente
+    protected int currentQuestion = 0;  
+    protected int score = 0;  
+    protected String[] questions;  
+    protected String[][] answers;
+    protected Object[] correctAnswers; 
+    protected int[] attempts;  
+    protected boolean confirmedExercise = false;  
+    protected int difficulty; 
+    protected String codiceEsercizioCorrente;
 
     @FXML
     protected Button nextButton;
@@ -41,13 +41,12 @@ public abstract class BaseEsercizi {
             return;
         }
         questionLabel.setText(questions[currentQuestion]);
-        // cambiare a seconda del tipo di esercizio
     }
 
     protected void handleAnswer(int index) {
         Object correctAnswer = correctAnswers[currentQuestion];
 
-        // Verifica se la risposta corretta e' di tipo String
+
         if (correctAnswer instanceof String) {
             String answerStr = (String) correctAnswer;//cast a String
             if (answerStr.equals(String.valueOf(index))) {
@@ -56,7 +55,7 @@ public abstract class BaseEsercizi {
                 incrementAttempts();
             }
         }
-        // Verifica se la risposta corretta e' di tipo Integer
+
         else if (correctAnswer instanceof Integer) {
             Integer answerInt = (Integer) correctAnswer;//cast a Integer
             if (answerInt.equals(index)) {
@@ -65,7 +64,6 @@ public abstract class BaseEsercizi {
                 incrementAttempts();
             }
         } else {
-            // Gestisci il caso in cui correctAnswer non sia ne' String ne' Integer
             showAlert("Tipo di risposta non gestito", "Contattare il supporto tecnico.");
         }
     }
@@ -100,7 +98,6 @@ public abstract class BaseEsercizi {
         alert.showAndWait();
     }
 
-    // Mostra un alert di risposta errata
     private void showAlert(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
@@ -117,7 +114,6 @@ public abstract class BaseEsercizi {
         if (score >= 300) {
             resultText += "Hai completato l'esercizio! Congratulazioni " + utenteCorrente.getNomeUtente() + "!";
 
-            //metodo per incrementare la progress bar
 
         } else {
             resultText += "Esercizio non superato! Riprova!";
@@ -130,7 +126,6 @@ public abstract class BaseEsercizi {
 
     @FXML
     protected void returnToHome() {
-        // logica per salvare il punteggio e tornare alla home
         try {
             GestoreUtenti.aggiornaPunteggioUtente(utenteCorrente.getNomeUtente(), codiceEsercizioCorrente, score);
             MainProgettoPlay.showHomeScene();

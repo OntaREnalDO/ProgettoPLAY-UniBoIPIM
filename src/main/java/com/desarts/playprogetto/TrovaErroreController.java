@@ -17,17 +17,17 @@ import java.security.NoSuchAlgorithmException;
 
 public class TrovaErroreController {
 
-    private int currentQuestion = 0;  // Indice della domanda corrente
+    private int currentQuestion = 0;  
     private int score = 0;  // Punteggio dell'utente
-    private String codiceEsercizioCorrente = ""; //codice dell'esercizio completato
-
-    private boolean[] answeredCorrectlyFirstAttempt = new boolean[5];  // Tiene traccia delle risposte corrette al primo tentativo
-    private String difficulty;  // Difficoltà selezionata
+    private String codiceEsercizioCorrente = ""; 
+    
+    private boolean[] answeredCorrectlyFirstAttempt = new boolean[5];  
+    private String difficulty; 
     private String[] questionImages;
-    private String[][] answers;  // Array delle risposte
-    private int[] correctAnswers;  // Indici delle risposte corrette
-    private int[] attempts = new int[5];  // Tiene traccia dei tentativi per ogni domanda
-    private boolean confirmedExercise = false;  // Indica se l'esercizio è stato confermato
+    private String[][] answers;  
+    private int[] correctAnswers;  
+    private int[] attempts = new int[5]; 
+    private boolean confirmedExercise = false; 
     Utente utenteCorrente = GestoreUtenti.getUtenteCorrente();
 
     @FXML
@@ -119,7 +119,7 @@ public class TrovaErroreController {
     }
     private void loadQuestion() {
         if (questionImages == null) {
-            return; // Gestisce il caso in cui le domande non sono ancora caricate
+            return;
         }
 
         if (currentQuestion < questionImages.length) {
@@ -279,7 +279,7 @@ public class TrovaErroreController {
                 throw new IllegalArgumentException("Difficoltà non riconosciuta");
         }
 
-        return typeCode + levelCode; // Costruisce il codice come "D1", "D2", "D3"
+        return typeCode + levelCode;
     }
 
 }

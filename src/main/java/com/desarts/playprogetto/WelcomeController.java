@@ -9,7 +9,6 @@ public class WelcomeController {
     @FXML
     private void handleIniziaAction(ActionEvent event) {
         if(GestoreUtenti.loginCheck){
-           // ImpostazioniController.showWelcomeAlert("Benvenuto" + "nome utente", "Inizia a giocare!");
 
         MainProgettoPlay.showHomeScene();
 

@@ -8,16 +8,22 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.util.Objects;
 public class CosaStampaController {
 
     private int currentQuestion = 0;
     private int score = 0;
+    private String codiceEsercizioCorrente = ""; //codice dell'esercizio completato
+
     private String difficulty;
 
     private String[] questions;
     private String[] correctAnswers;
     private int[] attempts;
+    //creo istanza di utenteCorrente
+    Utente utenteCorrente = GestoreUtenti.getUtenteCorrente();
 
     @FXML
     private Button nextButton;
@@ -182,23 +188,41 @@ public class CosaStampaController {
     // Mostra il risultato finale
     private void showResult() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Risultato");
+        alert.setTitle("Risultato del Quiz");
         alert.setHeaderText(null);
-        if(score>2)
-            alert.setContentText("Complimenti! Hai superato l'esercizio.\nIl tuo punteggio è: " + score + "/5\nPremi su \"Conferma l'esercizio\" per salvare il tuo punteggio!");
-        else
-            alert.setContentText("Peccato! Non hai superato l'esercizio.\nIl tuo punteggio è: " + score + "/5\nPremi su \"Conferma l'esercizio\" per salvare il tuo punteggio!");
+        // Preparazione del messaggio di risultato
+        String resultText = "Il tuo punteggio è: " + score + "/500\n";
+        // Verifica se l'esercizio è stato superato
+        if (score >= 300) {
+            resultText += "Hai completato l'esercizio! Congratulazioni " + utenteCorrente.getNomeUtente() + "!";
 
+            // Recupera il punteggio corrente salvato per l'esercizio
+            int currentStoredScore = utenteCorrente.getPunteggioSingolo(codiceEsercizioCorrente);
 
-        ButtonType buttonTypeConfirm  = new ButtonType("Conferma l'esercizio");
-        ButtonType buttonTypeCancel  = new ButtonType("Non salvare");
-        alert.getButtonTypes().setAll(buttonTypeConfirm, buttonTypeCancel);
+            // Aggiorna il punteggio solo se il nuovo è maggiore di quello già registrato
+            //quindi salva anche il punteggio se l'esercizio non e' mai stato fatto
+            // Logica per l'aggiornamento del punteggio e della progress bar
+            if (currentStoredScore == 0 || score > currentStoredScore) {
+                // Salva il nuovo punteggio se è la prima volta o se è migliore del precedente
+                try {
+                    salvaPartita();
+                    //progressbar
+                    //HomeController.incrementProgressBar(1.0 / 3.0, "B");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }   else {
+            resultText += "Esercizio non superato! Riprova!";
+        }
+        alert.setContentText(resultText);
+
+        ButtonType buttonTypeConfirm = new ButtonType("Fine esercizio");
+        alert.getButtonTypes().setAll(buttonTypeConfirm);
 
         alert.showAndWait().ifPresent(type -> {
             if (type == buttonTypeConfirm) {
                 returnToHome();
-            } else {
-                returnToHomeWithoutSaving();
             }
         });
     }
@@ -231,12 +255,37 @@ public class CosaStampaController {
     private void returnToHome() {
         // Carica la scena Home
         MainProgettoPlay.showHomeScene();
-        // Add code to return to home screen and save the result
+    }
+
+    private void salvaPartita() throws IOException, NoSuchAlgorithmException {
+        GestoreUtenti.aggiornaPunteggioUtente(utenteCorrente.getNomeUtente(), codiceEsercizioCorrente, score);
     }
 
     private void returnToHomeWithoutSaving() {
         Stage stage = (Stage) nextButton.getScene().getWindow();
         stage.close(); // Chiude la finestra dell'esercizio
         MainProgettoPlay.showHomeScene(); // Mostra la scena Home
+    }
+
+    //genera codice esercizio per salvatagio su file
+    private String generaCodiceEsercizio(String difficulty) {
+        String typeCode = "B";
+        int levelCode;
+
+        switch (difficulty.toLowerCase()) {
+            case "easy":
+                levelCode = 1;
+                break;
+            case "intermediate":
+                levelCode = 2;
+                break;
+            case "expert":
+                levelCode = 3;
+                break;
+            default:
+                throw new IllegalArgumentException("Difficoltà non riconosciuta");
+        }
+
+        return typeCode + levelCode; // Costruisce il codice come "D1", "D2", "D3"
     }
 }

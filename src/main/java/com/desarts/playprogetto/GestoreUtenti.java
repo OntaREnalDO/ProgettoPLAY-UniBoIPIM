@@ -11,13 +11,11 @@ public class GestoreUtenti{
 
     static boolean loginCheck = false;
     static Utente utenteCorrente = null;
-    //crea un file dove verranno inseriti gli utenti
     private static final String FILE_TXT = "src/main/resources/com/desarts/playprogetto/listaUtenti.txt";
 
     public static void registraUtente(String nomeUtente, String password) throws IOException, NoSuchAlgorithmException {
         List<Utente> utenti = leggiUtenti();
 
-        // Verifica se l'utente esiste gia'
         for (Utente utente : utenti) {
             if (utente.getNomeUtente().equals(nomeUtente)) {
                 ImpostazioniController.showAlert("Errore di Registrazione", "Nome utente gia' esistente");
@@ -25,21 +23,17 @@ public class GestoreUtenti{
             }
         }
 
-        // Aggiungi nuovo utente
         utenti.add(new Utente(nomeUtente, password));
 
-        // Scrivi la lista aggiornata nel file TXT
         scriviUtenti(utenti);
     }
 
-    // Metodo per effettuare il login
         public static boolean loginUtente(String username, String password) {
             try {
                 List<Utente> utenti = leggiUtenti();
                 for (Utente utente : utenti) {
                     if (utente.getNomeUtente().equals(username) && utente.verificaPassword(password)) {
                         loginCheck = true;
-                        //assegna a utenteCorrente un istanza dell'utente che ha appena effettuato il login
                         utenteCorrente = utente;
                         return true; // Login riuscito
                     }
@@ -48,7 +42,7 @@ public class GestoreUtenti{
                 e.printStackTrace();
             }
             loginCheck = false;
-            return false; // Credenziali non valide
+            return false; 
         }
 
 
@@ -76,7 +70,6 @@ public class GestoreUtenti{
     }
 
 
-    //aggiungo l'utente alla lista
     private static void scriviUtenti(List<Utente> utenti) throws IOException {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_TXT))) {
             for (Utente utente : utenti) {
@@ -86,7 +79,6 @@ public class GestoreUtenti{
         }
     }
 
-    //aggiorna punteggio
     public static void aggiornaPunteggioUtente(String username, String codiceEsercizio, int punteggio) throws IOException, NoSuchAlgorithmException {
         List<Utente> utenti = leggiUtenti();
         boolean found = false;
@@ -103,7 +95,6 @@ public class GestoreUtenti{
         scriviUtenti(utenti);
     }
 
-    // getter di utenteCorrente
     public static Utente getUtenteCorrente() {
         return utenteCorrente;
     }

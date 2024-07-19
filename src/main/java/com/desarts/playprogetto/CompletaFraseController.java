@@ -17,17 +17,17 @@ import java.security.NoSuchAlgorithmException;
 
 public class CompletaFraseController {
 
-    private int currentQuestion = 0;  // Indice della domanda corrente
-    private int score = 0;  // Punteggio dell'utente
-    private String codiceEsercizioCorrente = ""; //codice dell'esercizio completato
+    private int currentQuestion = 0;  
+    private int score = 0;  
+    private String codiceEsercizioCorrente = ""; 
 
-    private boolean[] answeredCorrectlyFirstAttempt = new boolean[5];  // Tiene traccia delle risposte corrette al primo tentativo
-    private String difficulty;  // Difficoltà selezionata
-    private String[] questionImages; // Array delle domande
-    private String[][] answers;  // Array delle risposte
-    private int[] correctAnswers;  // Indici delle risposte corrette
-    private int[] attempts = new int[5];  // Tiene traccia dei tentativi per ogni domanda
-    private boolean confirmedExercise = false;  // Indica se l'esercizio è stato confermato
+    private boolean[] answeredCorrectlyFirstAttempt = new boolean[5];
+    private String difficulty;
+    private String[] questionImages;
+    private String[][] answers; 
+    private int[] correctAnswers;  
+    private int[] attempts = new int[5];
+    private boolean confirmedExercise = false;  
     //creo istanza di utenteCorrente
     Utente utenteCorrente = GestoreUtenti.getUtenteCorrente();
 
@@ -46,25 +46,25 @@ public class CompletaFraseController {
     @FXML
     private Label questionLabel;
     @FXML
-    private ScrollPane questionScrollPane; // ScrollPane per le immagini delle domande
+    private ScrollPane questionScrollPane; 
     @FXML
-    private ImageView questionImageView; // ImageView per visualizzare le immagini delle domande
+    private ImageView questionImageView;
 
-    private Button[] answerButtons; // Array dei pulsanti di risposta
+    private Button[] answerButtons; 
 
     @FXML
     public void initialize() {
         answerButtons = new Button[]{answerButton1, answerButton2, answerButton3, answerButton4};
     }
 
-    // Imposta la difficoltà e carica le domande e risposte corrispondenti
+ 
     public void setDifficulty(String difficulty) {
         this.difficulty = difficulty;
         loadQuestionsAndAnswers();
         loadQuestion();
     }
 
-    // Carica le domande e le risposte in base alla difficoltà
+
     private void loadQuestionsAndAnswers() {
         switch (difficulty) {
             case "easy":
@@ -120,14 +120,13 @@ public class CompletaFraseController {
                 break;
         }
     }
-    // Carica la domanda corrente
+
     private void loadQuestion() {
         if (questionImages == null) {
-            return; // Gestisce il caso in cui le domande non sono ancora caricate
+            return; 
         }
 
         if (currentQuestion < questionImages.length) {
-            //carica immagine domanda corrente
             Image questionImage = new Image(questionImages[currentQuestion]);
             questionImageView.setImage(questionImage);
 
@@ -141,7 +140,7 @@ public class CompletaFraseController {
         } else {
             showResult();
         }
-        // Cambia il testo del pulsante all'ultima domanda
+       
         if (currentQuestion == questionImages.length - 1) {
             nextButton.setText("Conferma esercizio");
         } else {
@@ -149,7 +148,6 @@ public class CompletaFraseController {
         }
     }
 
-    // Gestisce la selezione della risposta
     private void handleAnswer(int index) {
         if (index == correctAnswers[currentQuestion]) {
             if (attempts[currentQuestion] == 0) {
@@ -162,7 +160,7 @@ public class CompletaFraseController {
         }
     }
 
-    // Mostra un alert di risposta corretta
+  
     private void showCorrectAlert() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Risposta Corretta");
@@ -175,7 +173,6 @@ public class CompletaFraseController {
         }
     }
 
-    // Mostra un alert di risposta errata
     private void showErrorAlert() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Risposta Errata");
@@ -184,7 +181,7 @@ public class CompletaFraseController {
         alert.showAndWait();
     }
 
-    // Carica la domanda successiva o mostra il risultato
+
     @FXML
     private void nextQuestion() {
         currentQuestion++;
@@ -195,29 +192,21 @@ public class CompletaFraseController {
         }
     }
 
-    // Mostra il risultato finale
+
     private void showResult() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Risultato del Quiz");
         alert.setHeaderText(null);
-        // Preparazione del messaggio di risultato
         String resultText = "Il tuo punteggio è: " + score + "/500\n";
-        // Verifica se l'esercizio è stato superato
+
         if (score >= 300) {
             resultText += "Hai completato l'esercizio! Congratulazioni " + utenteCorrente.getNomeUtente() + "!";
 
-            // Recupera il punteggio corrente salvato per l'esercizio
             int currentStoredScore = utenteCorrente.getPunteggioSingolo(codiceEsercizioCorrente);
 
-            // Aggiorna il punteggio solo se il nuovo è maggiore di quello già registrato
-            //quindi salva anche il punteggio se l'esercizio non e' mai stato fatto
-            // Logica per l'aggiornamento del punteggio e della progress bar
             if (currentStoredScore == 0 || score > currentStoredScore) {
-                // Salva il nuovo punteggio se è la prima volta o se è migliore del precedente
                 try {
                     salvaPartita();
-                    //progressbar
-                    //HomeController.incrementProgressBar(1.0 / 3.0, "A");
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -238,7 +227,6 @@ public class CompletaFraseController {
     }
 
 
-    //Per gestire il bottone "Torna alla home" durante l'esercizio
     @FXML
     private void handleHome(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -258,7 +246,6 @@ public class CompletaFraseController {
     }
 
     private void returnToHome() {
-        // Carica la scena Home
         MainProgettoPlay.showHomeScene();
     }
 
@@ -284,8 +271,6 @@ public class CompletaFraseController {
         }
     }
 
-
-    //genera codice esercizio per salvatagio su file
     private String generaCodiceEsercizio(String difficulty) {
         String typeCode = "C";
         int levelCode;
@@ -304,6 +289,6 @@ public class CompletaFraseController {
                 throw new IllegalArgumentException("Difficoltà non riconosciuta");
         }
 
-        return typeCode + levelCode; // Costruisce il codice come "D1", "D2", "D3"
+        return typeCode + levelCode;
     }
 }

@@ -40,7 +40,6 @@ public class RegisterController {
             ImpostazioniController.showAlert("Errore di Registrazione", "Le password non corrispondono.");
 
         }  else {
-            // Utente viene registrato con registraUtente() di GestoriUtenti e mostrato avviso di successo
             registraUtente(username, password);
             ImpostazioniController.showWelcomeAlert("Registrazione Effettuata", "Benvenuto, " + username + "! Account creato con successo.");
             MainProgettoPlay.showLoginScene();

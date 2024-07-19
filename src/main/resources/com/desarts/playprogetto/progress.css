@@ -1,7 +1,7 @@
 .progress-bar {
-    -fx-background-color: #e0e0e0; /* Colore di sfondo della barra */
+    -fx-background-color: #e0e0e0; 
 }
 
 .progress-bar .bar {
-    -fx-background-color: #008000; /* Colore verde per la parte riempita della barra */
+    -fx-background-color: #008000;
 }

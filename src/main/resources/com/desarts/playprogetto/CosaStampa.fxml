@@ -16,7 +16,6 @@
         <ScrollPane prefHeight="294.0" prefWidth="760.0">
             <content>
                 <VBox fx:id="vBox" fillWidth="true">
-                    <!-- ImageView to display the question image -->
                     <ImageView fx:id="questionImageView" fitHeight="355.0" fitWidth="748.0" layoutX="2.0" layoutY="-92.0" preserveRatio="true" />
                 </VBox>
             </content>

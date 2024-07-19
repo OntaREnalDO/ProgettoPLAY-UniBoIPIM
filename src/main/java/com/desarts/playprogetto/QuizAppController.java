@@ -17,17 +17,16 @@ import java.security.NoSuchAlgorithmException;
 
 public class QuizAppController {
 
-    private int currentQuestion = 0;  // Indice della domanda corrente
-    private int score = 0;  // Punteggio dell'utente
-    private String codiceEsercizioCorrente = ""; //codice dell'esercizio completato
-    private boolean[] answeredCorrectlyFirstAttempt = new boolean[5];  // Tiene traccia delle risposte corrette al primo tentativo
-    private String difficulty;  // Difficoltà selezionata
-    private String[] questions;  // Array delle domande
-    private String[][] answers;  // Array delle risposte
-    private int[] correctAnswers;  // Indici delle risposte corrette
-    private int[] attempts = new int[5];  // Tiene traccia dei tentativi per ogni domanda
-    private boolean confirmedExercise = false;  // Indica se l'esercizio è stato confermato
-//creo istanza di utenteCorrente
+    private int currentQuestion = 0;  
+    private int score = 0; 
+    private String codiceEsercizioCorrente = "";
+    private boolean[] answeredCorrectlyFirstAttempt = new boolean[5]; 
+    private String difficulty;  
+    private String[] questions; 
+    private String[][] answers;  
+    private int[] correctAnswers; 
+    private int[] attempts = new int[5];
+    private boolean confirmedExercise = false; 
     Utente utenteCorrente = GestoreUtenti.getUtenteCorrente();
 
     @FXML
@@ -47,23 +46,20 @@ public class QuizAppController {
     @FXML
     private Label questionLabel;
 
-    private Button[] answerButtons; // Array dei pulsanti di risposta
+    private Button[] answerButtons; 
 
     @FXML
     public void initialize() {
         answerButtons = new Button[]{answerButton1, answerButton2, answerButton3, answerButton4};
     }
 
-    // Imposta la difficoltà e carica le domande e risposte corrispondenti
     public void setDifficulty(String difficulty) {
         this.difficulty = difficulty;
         loadQuestionsAndAnswers();
         loadQuestion();
     }
 
-    // Carica le domande e le risposte in base alla difficoltà
     private void loadQuestionsAndAnswers() {
-        //implemento per prima cosa il codice esercizio per il salvataggio su file
         codiceEsercizioCorrente = generaCodiceEsercizio(difficulty);
         switch (difficulty) {
             case "easy":
@@ -120,10 +116,9 @@ public class QuizAppController {
         }
     }
 
-    // Carica la domanda corrente
     private void loadQuestion() {
         if (questions == null) {
-            return; // Gestisce il caso in cui le domande non sono ancora caricate
+            return; 
         }
 
         if (currentQuestion < questions.length) {
@@ -138,7 +133,6 @@ public class QuizAppController {
         } else {
             showResult();
         }
-        // Cambia il testo del pulsante all'ultima domanda
         if (currentQuestion == questions.length - 1) {
             nextButton.setText("Conferma esercizio");
         } else {
@@ -146,7 +140,6 @@ public class QuizAppController {
         }
     }
 
-    // Gestisce la selezione della risposta
     private void handleAnswer(int index) {
         if (index == correctAnswers[currentQuestion]) {
             if (attempts[currentQuestion] == 0) {
@@ -159,7 +152,6 @@ public class QuizAppController {
         }
     }
 
-    // Mostra un alert di risposta corretta
     private void showCorrectAlert() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Risposta Corretta");
@@ -172,7 +164,6 @@ public class QuizAppController {
         }
     }
 
-    // Mostra un alert di risposta errata
     private void showErrorAlert() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Risposta Errata");
@@ -181,7 +172,6 @@ public class QuizAppController {
         alert.showAndWait();
     }
 
-    // Carica la domanda successiva o mostra il risultato
     @FXML
     private void nextQuestion() {
         currentQuestion++;
@@ -192,25 +182,17 @@ public class QuizAppController {
         }
     }
 
-    // Mostra il risultato finale
     private void showResult() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Risultato del Quiz");
         alert.setHeaderText(null);
-        // Preparazione del messaggio di risultato
         String resultText = "Il tuo punteggio è: " + score + "/500\n";
-        // Verifica se l'esercizio è stato superato
         if (score >= 300) {
             resultText += "Hai completato l'esercizio! Congratulazioni " + utenteCorrente.getNomeUtente() + "!";
 
-            // Recupera il punteggio corrente salvato per l'esercizio
             int currentStoredScore = utenteCorrente.getPunteggioSingolo(codiceEsercizioCorrente);
 
-            // Aggiorna il punteggio solo se il nuovo è maggiore di quello già registrato
-            //quindi salva anche il punteggio se l'esercizio non e' mai stato fatto
-            // Logica per l'aggiornamento del punteggio e della progress bar
             if (currentStoredScore == 0 || score > currentStoredScore) {
-                // Salva il nuovo punteggio se è la prima volta o se è migliore del precedente
                 try {
                     salvaPartita();
                     //progress bar
@@ -234,7 +216,6 @@ public class QuizAppController {
             });
         }
 
-    // Metodo per aggiornare la progress bar dopo aver completato l'esercizio
     private void aggiornaProgressBar() {
         Platform.runLater(() -> {
             HomeController homeController = MainProgettoPlay.getHomeController();
@@ -245,7 +226,6 @@ public class QuizAppController {
     }
 
 
-        //Per gestire il bottone "Torna alla home" durante l'esercizio
         @FXML
         private void handleHome (ActionEvent event){
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -291,7 +271,6 @@ public class QuizAppController {
         }
     }
 
-//genera codice esercizio per salvatagio su file
     private String generaCodiceEsercizio(String difficulty) {
         String typeCode = "D"; // usiamo "D" per quiz
         int levelCode;

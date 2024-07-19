@@ -18,7 +18,6 @@ public class ImpostazioniController {
     @FXML
     private Button logoutButton;
 
-    // Metodo iniziale per configurare la visibilità dei componenti
     public void initialize() throws IOException {
         aggiornaSchermataWelcome();
     }
@@ -31,20 +30,16 @@ public class ImpostazioniController {
         loginButton.setVisible(!isLoggedIn);
 
         if (isLoggedIn) {
-            // Imposta il testo della label con il nome utente
             usernameLabel.setText("Benvenuto, " + getLoggedInUsername());
         }
     }
 
-    // Simula il controllo dello stato di login
     private boolean checkIfUserIsLoggedIn() {
-        // logica di autenticazione
         return GestoreUtenti.loginCheck;
 
 
     }
 
-    // Simula l'ottenimento del nome utente loggato
     private String getLoggedInUsername() throws IOException {
 
         return GestoreUtenti.utenteCorrente.getNomeUtente();
@@ -52,27 +47,22 @@ public class ImpostazioniController {
 
     @FXML
     private void handleLoginAction() {
-        // Logica per gestire il login
         MainProgettoPlay.showLoginScene();
     }
 
     @FXML
     private void handleLogoutAction() throws IOException {
-        // Logica per gestire il logout
         showLogoutAlert();
-        // Dopo il logout, aggiorna l'interfaccia
         aggiornaSchermataWelcome();
     }
 
     @FXML
     private void handleBackAction() {
-        // Torna alla schermata di welcome
         MainProgettoPlay.showWelcomeScene();
     }
 
 
 
-    //lista degli alert
     static void showAlert(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
@@ -89,7 +79,6 @@ public class ImpostazioniController {
         alert.showAndWait();
     }
 
-    // Alert di conferma logout a due opzioni
     public static void showLogoutAlert() {
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -97,19 +86,13 @@ public class ImpostazioniController {
         alert.setHeaderText("Sei sicuro di voler uscire?");
         alert.setContentText("Seleziona OK per uscire, o Cancella per tornare all'applicazione.");
 
-        // Personalizzazione dei bottoni
         alert.getButtonTypes().setAll(ButtonType.OK, ButtonType.CANCEL);
 
-        // Mostra l'Alert e attendi la risposta dell'utente
         alert.showAndWait().ifPresent(response -> {
             if (response == ButtonType.OK) {
-                // L'utente ha confermato di voler uscire e si effettua logout
                 GestoreUtenti.logoutUtente();
-                //chiude l'applicazione
-                //Platform.exit();
 
             } else {
-                // L'utente ha selezionato di non uscire
                 alert.close(); // Chiudi solo l'alert se l'utente decide di non uscire
             }
         });

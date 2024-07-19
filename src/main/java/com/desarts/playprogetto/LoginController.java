@@ -28,7 +28,6 @@ public class LoginController {
         String username = usernameField.getText();
         String password = passwordField.getText();
 
-        // Verifica delle credenziali
         if (GestoreUtenti.loginUtente(username, password)) {
             showWelcomeAlert("Login Effettuato", "Benvenuto, " + username + "!");
             MainProgettoPlay.showWelcomeScene();
@@ -58,7 +57,7 @@ public class LoginController {
 
     @FXML
     public void handleBackButtonAction(ActionEvent actionEvent) {
-            MainProgettoPlay.showWelcomeScene(); // Mostra la schermata di benvenuto
+            MainProgettoPlay.showWelcomeScene(); 
         }
 
 

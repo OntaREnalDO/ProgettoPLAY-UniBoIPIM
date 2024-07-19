@@ -34,7 +34,6 @@ public class GestoreUtenti{
                 for (Utente utente : utenti) {
                     if (utente.getNomeUtente().equals(username) && utente.verificaPassword(password)) {
                         loginCheck = true;
-                        //assegna a utenteCorrente un istanza dell'utente che ha appena effettuato il login
                         utenteCorrente = utente;
                         return true; // Login riuscito
                     }
@@ -43,7 +42,7 @@ public class GestoreUtenti{
                 e.printStackTrace();
             }
             loginCheck = false;
-            return false; // Credenziali non valide
+            return false; 
         }
 
 

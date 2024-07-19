@@ -6,13 +6,10 @@
 
 <VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.desarts.playprogetto.ImpostazioniController"
       alignment="CENTER" prefHeight="600.0" prefWidth="800.0" spacing="10" fx:id="vboxContainer">
-<!-- Elemento condizionale per il nome utente o il pulsante di login -->
 <Label fx:id="usernameLabel" text="Benvenuto, [NomeUtente]" visible="false"/>
 <Button fx:id="loginButton" text="Login" onAction="#handleLoginAction" visible="false"/>
 
-<!-- Pulsante Logout, visibile solo se l'utente è loggato -->
 <Button fx:id="logoutButton" text="Logout" onAction="#handleLogoutAction" visible="false"/>
 
-<!-- Pulsante Indietro -->
 <Button text="Indietro" onAction="#handleBackAction"/>
 </VBox>

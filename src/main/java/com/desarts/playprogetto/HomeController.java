@@ -56,25 +56,21 @@ public class HomeController {
         }
     }
 
-    // Gestisce il clic sul pulsante "Completa la frase"
     @FXML
     private void handleCompletaFraseAction() throws IOException {
         loadDifficultySelection("CompletaFrase");
     }
 
-    // Gestisce il clic sul pulsante "Cosa stampa"
     @FXML
     private void handleCosaStampaAction() throws IOException {
         loadDifficultySelection("CosaStampa");
     }
 
-    // Gestisce il clic sul pulsante "Trova l'errore"
     @FXML
     private void handleTrovaErroreAction() throws IOException {
         loadDifficultySelection("TrovaErrore");
     }
 
-    // Gestisce il clic sul pulsante "Quiz"
     @FXML
     private void handleQuizAction() throws IOException {
         loadDifficultySelection("QuizApp");
@@ -82,7 +78,6 @@ public class HomeController {
 
     @FXML
     public void handleUsernameLabel() {
-        //Scrive il nome utente nella schermata home
         Utente utenteCorrente = GestoreUtenti.getUtenteCorrente();
         if (utenteCorrente != null && usernameLabel != null) {
             String nomeUtenteCorrente = utenteCorrente.getNomeUtente();
@@ -90,14 +85,13 @@ public class HomeController {
         }
     }
 
-    // Carica la finestra di selezione della difficoltà
     private void loadDifficultySelection(String exerciseType) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("difficolta_cs.fxml"));
         Parent root = loader.load();
 
         DifficultyController controller = loader.getController();
         controller.setExerciseType(exerciseType);
-        controller.setStage(stage); // Impostazione dello Stage nel controller
+        controller.setStage(stage); 
 
         Scene scene = new Scene(root);
         stage.setScene(scene);
@@ -122,7 +116,6 @@ public class HomeController {
     public void updateProgressBars() {
         if (utenteCorrente != null) {
 
-            // Aggiorna la progress bar per ogni gruppo di esercizi
             updateSingleProgressBar(progressBar1, new String[]{"A1", "A2", "A3"}, utenteCorrente);
             updateSingleProgressBar(progressBar2, new String[]{"B1", "B2", "B3"}, utenteCorrente);
             updateSingleProgressBar(progressBar3, new String[]{"C1", "C2", "C3"}, utenteCorrente);
@@ -130,7 +123,6 @@ public class HomeController {
         }
     }
 
-    // Metodo ausiliario per aggiornare una singola progress bar
     private void updateSingleProgressBar(ProgressBar progressBar, String[] codiciEsercizi, Utente utente) {
         Platform.runLater(() -> {
             int eserciziCompletati = 0;
